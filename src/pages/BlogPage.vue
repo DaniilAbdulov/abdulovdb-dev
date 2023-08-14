@@ -3,7 +3,10 @@
         <div class="blog__wrapper">
             <div class="blog__content">
                 <post-form @create="createPost"></post-form>
-                <posts-list :posts="posts"></posts-list>
+                <posts-list
+                    :posts="posts"
+                    @remove="removePostFromBlog"
+                ></posts-list>
             </div>
         </div>
     </div>
@@ -35,6 +38,11 @@ export default {
                 const json = await response.json();
                 this.posts = json;
             }
+        },
+        removePostFromBlog(postToRemove) {
+            this.posts = this.posts.filter(
+                (post) => post.id !== postToRemove.id
+            );
         },
     },
     mounted() {

@@ -2,17 +2,25 @@
     <div class="post">
         <post-headers :post="post"></post-headers>
         <div class="post__social">
-            <social-buttons :post="post"></social-buttons>
+            <social-buttons
+                :post="post"
+                @remove="handleRemovePost"
+            ></social-buttons>
         </div>
+    </div>
+    <div class="comments">
+        <comments-list :post-id="post.id" :comments="comments"></comments-list>
     </div>
 </template>
 <script>
 import PostHeaders from "@/components/PostHeaders.vue";
 import SocialButtons from "@/components/SocialButtons.vue";
+import CommentsList from "@/components/CommentsList.vue";
 export default {
     components: {
         SocialButtons,
         PostHeaders,
+        CommentsList,
     },
     props: {
         post: {
@@ -20,7 +28,30 @@ export default {
             required: true,
         },
     },
-    methods: {},
+    data() {
+        return {
+            comments: [],
+        };
+    },
+    methods: {
+        async getComments() {
+            const response = await fetch(
+                "https://jsonplaceholder.typicode.com/comments?_limit=500"
+            );
+            if (!response.ok) {
+                throw new Error("Errorrrrr");
+            } else {
+                const json = await response.json();
+                this.comments = json;
+            }
+        },
+        handleRemovePost() {
+            this.$emit("remove", this.post);
+        },
+    },
+    mounted() {
+        this.getComments();
+    },
 };
 </script>
 <style>
@@ -31,15 +62,7 @@ export default {
     padding: 15px;
     margin-bottom: 10px;
 }
-.post__title span,
-.post__body span {
-    font-weight: 700;
-}
-.post__body {
+.comments {
     margin-bottom: 10px;
-}
-.post__social {
-    display: flex;
-    gap: 5px;
 }
 </style>

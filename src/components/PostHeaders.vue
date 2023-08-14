@@ -1,6 +1,10 @@
 <template>
-    <div class="post__title"><span>Title:</span> {{ post.title }}</div>
-    <div class="post__body"><span>Body:</span> {{ post.body }}</div>
+    <div>
+        <div class="post__title">{{ post.title }}</div>
+    </div>
+    <div>
+        <div class="post__body">{{ post.body }}</div>
+    </div>
 </template>
 <script>
 export default {
@@ -12,4 +16,20 @@ export default {
     },
 };
 </script>
-<style></style>
+<style>
+.post__body {
+    margin-bottom: 10px;
+}
+.post__social {
+    display: flex;
+    gap: 5px;
+}
+.post__title {
+    font-size: 18px;
+    font-weight: bold;
+}
+.post__title::first-letter,
+.post__body::first-letter {
+    text-transform: capitalize;
+}
+</style>

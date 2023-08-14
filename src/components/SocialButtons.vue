@@ -1,5 +1,5 @@
 <template>
-    <button class="delete"></button>
+    <button class="delete" @click="removePost"></button>
     <button @click="like++">Like</button>
     <div v-if="like > 0" class="like">{{ like }}</div>
     <button
@@ -26,6 +26,11 @@ export default {
         post: {
             type: Object,
             required: true,
+        },
+    },
+    methods: {
+        removePost() {
+            this.$emit("remove", this.post);
         },
     },
 };

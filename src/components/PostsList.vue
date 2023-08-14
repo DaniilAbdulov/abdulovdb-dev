@@ -1,6 +1,11 @@
 <template>
     <div class="posts">
-        <post-item v-for="post in posts" :key="post.id" :post="post">
+        <post-item
+            v-for="post in posts"
+            :key="post.id"
+            :post="post"
+            @remove="handleRemovePostFromList"
+        >
         </post-item>
     </div>
 </template>
@@ -17,7 +22,11 @@ export default {
             required: true,
         },
     },
-    methods: {},
+    methods: {
+        handleRemovePostFromList(postToRemove) {
+            this.$emit("remove", postToRemove);
+        },
+    },
 };
 </script>
 <style>
