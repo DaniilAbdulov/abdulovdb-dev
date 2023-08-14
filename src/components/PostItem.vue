@@ -36,7 +36,7 @@ export default {
     methods: {
         async getComments() {
             const response = await fetch(
-                "https://jsonplaceholder.typicode.com/comments?_limit=500"
+                "https://jsonplaceholder.typicode.com/comments?_limit=20"
             );
             if (!response.ok) {
                 throw new Error("Errorrrrr");
