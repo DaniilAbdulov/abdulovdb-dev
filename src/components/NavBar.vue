@@ -38,6 +38,7 @@ export default {};
     text-transform: uppercase;
     overflow: hidden;
     width: 100%;
+    margin-bottom: 20px;
 }
 .logo-wrapper {
     display: flex;

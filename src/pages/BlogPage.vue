@@ -2,51 +2,53 @@
     <div class="blog">
         <div class="blog__wrapper">
             <div class="blog__content">
-                <div class="create">
-                    <form @submit.prevent>
-                        <input
-                            type="text"
-                            placeholder="Title"
-                            v-model="title"
-                        />
-                        <input type="text" placeholder="Body" v-model="body" />
-                        <button type="submit" @click="createPost">
-                            Create
-                        </button>
-                    </form>
-                </div>
+                <post-form @create="createPost"></post-form>
                 <posts-list :posts="posts"></posts-list>
             </div>
         </div>
     </div>
 </template>
 <script>
+import PostForm from "@/components/PostForm.vue";
 import PostsList from "@/components/PostsList.vue";
 export default {
     components: {
         PostsList,
+        PostForm,
     },
     data() {
         return {
-            posts: [
-                { id: "1", title: "First", body: "Body of first post" },
-                { id: "2", title: "Second", body: "Body of second post" },
-            ],
-            title: "",
-            body: "",
+            posts: [],
         };
     },
     methods: {
-        createPost() {
-            const newPost = {
-                id: Date.now(),
-                title: this.title,
-                body: this.body,
-            };
-            this.posts.push(newPost);
-            (this.title = ""), (this.body = "");
+        createPost(post) {
+            this.posts.push(post);
         },
+        async getPosts() {
+            const response = await fetch(
+                "https://jsonplaceholder.typicode.com/posts?_limit=10"
+            );
+            if (!response.ok) {
+                throw new Error("Errorrrrr");
+            } else {
+                const json = await response.json();
+                this.posts = json;
+            }
+        },
+    },
+    mounted() {
+        this.getPosts();
     },
 };
 </script>
-<style></style>
+<style>
+.blog {
+}
+.blog__wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.blog__content {
+}
+</style>
