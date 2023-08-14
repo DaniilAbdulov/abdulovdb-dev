@@ -1,22 +1,26 @@
 import { createRouter, createWebHistory } from "vue-router";
-import GeneralPage from "@/pages/GeneralPage";
+// import GeneralPage from "@/pages/GeneralPage";
 import AboutPage from "@/pages/AboutPage";
 import BlogPage from "@/pages/BlogPage";
 import ToDoPage from "@/pages/ToDoPage";
 
 const routes = [
+    // {
+    //     path: "/",
+    //     component: GeneralPage,
+    // },
     {
         path: "/",
-        component: GeneralPage,
+        component: BlogPage,
     },
     {
         path: "/about",
         component: AboutPage,
     },
-    {
-        path: "/blog",
-        component: BlogPage,
-    },
+    // {
+    //     path: "/blog",
+    //     component: BlogPage,
+    // },
     {
         path: "/todo",
         component: ToDoPage,
