@@ -1,34 +1,18 @@
 <template>
     <div class="post">
-        <div class="post__title"><span>Title:</span> {{ post.title }}</div>
-        <div class="post__body"><span>Body:</span> {{ post.body }}</div>
-        <div class="post__btns">
-            <button class="delete">X</button>
-        </div>
+        <post-headers :post="post"></post-headers>
         <div class="post__social">
-            <button @click="like++">Like</button>
-            <div v-if="like > 0" class="like">{{ like }}</div>
-            <button
-                @click="
-                    $router.push({
-                        path: `/posts/${post.id}`,
-                        query: { title: post.title, body: post.body },
-                    })
-                "
-            >
-                Comments
-            </button>
-            <div v-if="comment > 0" class="comment">{{ comment }}</div>
+            <social-buttons :post="post"></social-buttons>
         </div>
     </div>
 </template>
 <script>
+import PostHeaders from "@/components/PostHeaders.vue";
+import SocialButtons from "@/components/SocialButtons.vue";
 export default {
-    data() {
-        return {
-            like: 0,
-            comment: 0,
-        };
+    components: {
+        SocialButtons,
+        PostHeaders,
     },
     props: {
         post: {
@@ -53,12 +37,6 @@ export default {
 }
 .post__body {
     margin-bottom: 10px;
-}
-.delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px;
 }
 .post__social {
     display: flex;

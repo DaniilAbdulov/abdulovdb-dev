@@ -1,14 +1,12 @@
 <template>
     <div class="posts">
-        <post-item
-            v-for="post in posts"
-            :key="post.id"
-            :post="post"
-        ></post-item>
+        <post-item v-for="post in posts" :key="post.id" :post="post">
+        </post-item>
     </div>
 </template>
 <script>
 import PostItem from "./PostItem.vue";
+
 export default {
     components: {
         PostItem,
