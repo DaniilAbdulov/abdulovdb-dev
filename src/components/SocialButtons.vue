@@ -5,7 +5,7 @@
     <button
         @click="
             $router.push({
-                path: `/posts/${post.id}`,
+                path: '/posts/' + post.id,
                 query: { title: post.title, body: post.body },
             })
         "
@@ -14,6 +14,7 @@
     </button>
     <div v-if="comment > 0" class="comment">{{ comment }}</div>
 </template>
+
 <script>
 export default {
     data() {

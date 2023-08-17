@@ -3,28 +3,24 @@
         <div class="post">
             <post-headers :post="post"></post-headers>
         </div>
-        <div>Comments:</div>
-        <comments-list
-            :post-id="postId"
-            :comments="filteredComments"
-        ></comments-list>
+        <div v-for="comment in comments" :key="comment.id">
+            <p>{{ comment.name }}</p>
+            <p>{{ comment.email }}</p>
+            <p>{{ comment.body }}</p>
+        </div>
     </div>
 </template>
 
 <script>
 import PostHeaders from "@/components/PostHeaders.vue";
-import CommentsList from "@/components/CommentsList.vue";
+
+import { getComments } from "@/hooks/getComments";
 export default {
     components: {
         PostHeaders,
-        CommentsList,
     },
-    props: {
-        comments: {
-            type: Array,
-            required: true,
-        },
-    },
+    props: {},
+
     computed: {
         post() {
             return {
@@ -34,14 +30,22 @@ export default {
             };
         },
         postId() {
-            return parseInt(this.post.id, 10);
+            if (this.post && this.post.id) {
+                return parseInt(this.post.id, 10);
+            } else {
+                return null;
+            }
         },
-        filteredComments() {
-            if (!this.comments) return [];
-            return this.comments.filter(
-                (comment) => comment.postId === this.postId
-            );
-        },
+    },
+    methods: {},
+    setup(props) {
+        let postId = this.postId();
+        console.log(props);
+        console.log(postId); //error  'computed' is not defined
+        const { comments } = getComments();
+        return {
+            comments,
+        };
     },
 };
 </script>

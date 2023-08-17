@@ -30,7 +30,7 @@ export default {
         },
         async getPosts() {
             const response = await fetch(
-                "https://jsonplaceholder.typicode.com/posts?_limit=10"
+                "https://jsonplaceholder.typicode.com/posts?_limit=5"
             );
             if (!response.ok) {
                 throw new Error("Errorrrrr");
@@ -51,12 +51,8 @@ export default {
 };
 </script>
 <style>
-.blog {
-}
 .blog__wrapper {
     max-width: 1280px;
     margin: 0 auto;
-}
-.blog__content {
 }
 </style>
