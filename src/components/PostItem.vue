@@ -1,6 +1,6 @@
 <template>
     <div class="post">
-        <post-headers :post="post"></post-headers>
+        <post-headers :post="post"> </post-headers>
         <div class="post__social">
             <social-buttons
                 :post="post"
