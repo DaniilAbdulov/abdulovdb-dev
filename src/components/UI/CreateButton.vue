@@ -1,16 +1,17 @@
 <template>
-    <button class="social-button">
+    <button class="create-button">
         <slot></slot>
     </button>
 </template>
 <script>
 export default {
-    name: "social-button",
+    name: "create-button",
 };
 </script>
 
 <style>
-.social-button {
+.create-button {
+    border-radius: 50%;
     align-self: flex-end;
     padding: 10px 15px;
     background: none;

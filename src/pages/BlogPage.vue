@@ -2,7 +2,7 @@
     <div class="blog">
         <div class="blog__wrapper">
             <div class="blog__content">
-                <social-button @click="showDialog">Create Post</social-button>
+                <create-button @click="showDialog">+</create-button>
                 <my-dialog v-model:show="dialogVisible">
                     <post-form @create="createPost"></post-form>
                 </my-dialog>

@@ -1,8 +1,8 @@
 <template>
     <div class="create">
-        <form @submit.prevent>
+        <form @submit.prevent @keydown.enter="createPost">
             <input type="text" placeholder="Title" v-model="title" />
-            <input type="text" placeholder="Body" v-model="body" />
+            <textarea type="text" placeholder="Body" v-model="body" />
             <button type="submit" @click="createPost">Create</button>
         </form>
     </div>
