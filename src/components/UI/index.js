@@ -1,2 +1,3 @@
 import SocialButton from "@/components/UI/SocialButton";
-export default [SocialButton];
+import MyDialog from "@/components/UI/MyDialog";
+export default [SocialButton, MyDialog];

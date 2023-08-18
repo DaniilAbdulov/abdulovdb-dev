@@ -7,6 +7,9 @@
             <div>{{ com.email }}</div>
             <div>{{ com.body }}</div>
             <div>{{ com.time }}</div>
+            <social-button @click="removeComment(com.id)"
+                >Delete comment</social-button
+            >
         </div>
     </div>
     <new-comment-form @create="createComment"></new-comment-form>
@@ -27,6 +30,9 @@ export default {
         };
     },
     methods: {
+        removeComment(value) {
+            this.comments = this.comments.filter((p) => p.id !== value);
+        },
         async getCommentsForPost() {
             try {
                 let response = await fetch(

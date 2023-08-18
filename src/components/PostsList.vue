@@ -9,6 +9,7 @@
             <social-button @click="showPostComments(post)">
                 Комментарии {{ getCommentsCount(post.id) }}
             </social-button>
+            <social-button @click="$emit('remove', post)">Delete</social-button>
             <div>{{ post.time }}</div>
         </div>
     </div>

@@ -2,8 +2,15 @@
     <div class="blog">
         <div class="blog__wrapper">
             <div class="blog__content">
-                <post-form @create="createPost"></post-form>
-                <posts-list :posts="posts" :comments="comments"></posts-list>
+                <social-button @click="showDialog">Create Post</social-button>
+                <my-dialog v-model:show="dialogVisible">
+                    <post-form @create="createPost"></post-form>
+                </my-dialog>
+                <posts-list
+                    :posts="posts"
+                    @remove="removePost"
+                    :comments="comments"
+                ></posts-list>
             </div>
         </div>
     </div>
@@ -21,13 +28,20 @@ export default {
             posts: [],
             comments: [],
             like: 0,
+            dialogVisible: false,
         };
     },
     methods: {
+        showDialog() {
+            this.dialogVisible = true;
+        },
         createPost(post) {
             this.posts.push(post);
+            this.dialogVisible = false;
         },
-
+        removePost(post) {
+            this.posts = this.posts.filter((p) => p.id !== post.id);
+        },
         async getPostsAndComments() {
             try {
                 let response = await fetch(
