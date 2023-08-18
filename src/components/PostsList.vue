@@ -1,31 +1,66 @@
 <template>
-    <div class="posts">
-        <post-item
-            v-for="post in posts"
-            :key="post.id"
-            :post="post"
-            @remove="handleRemovePostFromList"
-        >
-        </post-item>
+    <div>
+        <div v-for="post in posts" :key="post.id">
+            <div>{{ post.body }}</div>
+            <button @click="post.like++">Лайк {{ post.like }}</button>
+            <button @click="showPostComments(post)">
+                Комментарии {{ getCommentsCount(post.id) }}
+            </button>
+        </div>
     </div>
 </template>
-<script>
-import PostItem from "./PostItem.vue";
 
+<script>
 export default {
-    components: {
-        PostItem,
-    },
-    props: {
-        posts: {
-            type: Array,
-            required: true,
-        },
+    data() {
+        return {
+            posts: [],
+            comments: [],
+        };
     },
     methods: {
-        handleRemovePostFromList(postToRemove) {
-            this.$emit("remove", postToRemove);
+        getCommentsCount(postId) {
+            return this.comments.filter((comment) => comment.postId === postId)
+                .length;
         },
+        showPostComments(post) {
+            this.$router.push({
+                path: `/post/${post.id}/comments`,
+                query: { body: post.body },
+            });
+        },
+        async getPosts() {
+            try {
+                let response = await fetch(
+                    `https://jsonplaceholder.typicode.com/posts?_limit=100`
+                );
+                if (!response.ok) {
+                    throw new Error("Errorrrrr");
+                } else {
+                    this.posts = await response.json();
+                    this.getAllComments();
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async getAllComments() {
+            try {
+                let response = await fetch(
+                    `https://jsonplaceholder.typicode.com/comments?_limit=500`
+                );
+                if (!response.ok) {
+                    throw new Error("Errorrrrr");
+                } else {
+                    this.comments = await response.json();
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    },
+    mounted() {
+        this.getPosts();
     },
 };
 </script>

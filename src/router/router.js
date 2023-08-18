@@ -27,7 +27,7 @@ const routes = [
         component: ToDoPage,
     },
     {
-        path: "/posts/:id",
+        path: "/post/:id/comments",
         component: PostIdPage,
     },
 ];

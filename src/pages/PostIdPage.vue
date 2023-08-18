@@ -1,59 +1,40 @@
 <template>
-    <div class="posts">
-        <div class="post">
-            <post-headers :post="post"> </post-headers>
-        </div>
-        <div
-            class="comment"
-            v-for="comment in comments"
-            :key="comment.id"
-            :post="post"
-        >
-            <p v-if="comment.postId == post.id">{{ comment.email }}</p>
-        </div>
+    <div>
+        <h1>Hello it's post with id = {{ postId }}</h1>
+        <div>{{ postBody }}</div>
+        <div v-for="com in comments" :key="com.id">{{ com.email }}</div>
     </div>
 </template>
+
 <script>
-import PostHeaders from "@/components/PostHeaders.vue";
-import { getComments } from "@/hooks/getComments";
 export default {
-    components: {
-        PostHeaders,
+    data() {
+        return {
+            comments: [],
+            postId: this.$route.params.id,
+            postBody: this.$route.query.body,
+        };
     },
-    props: {},
-    computed: {
-        post() {
-            return {
-                id: this.$route.params.id,
-                title: this.$route.query.title,
-                body: this.$route.query.body,
-            };
-        },
-        postId() {
-            if (this.post && this.post.id) {
-                return parseInt(this.post.id, 10);
-            } else {
-                return null;
+    computed: {},
+    created() {},
+    methods: {
+        async getCommentsForPost() {
+            try {
+                let response = await fetch(
+                    `https://jsonplaceholder.typicode.com/comments?postId=${this.postId}`
+                );
+                if (!response.ok) {
+                    throw new Error("Errorrrrr");
+                } else {
+                    this.comments = await response.json();
+                }
+            } catch (error) {
+                console.error(error);
             }
         },
     },
-    setup(props) {
-        console.log(props);
-        const { comments } = getComments();
-        return {
-            comments,
-        };
+    mounted() {
+        this.getCommentsForPost();
     },
 };
 </script>
-<style>
-.comment {
-    max-width: 70%;
-    margin: 0 auto;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 10px;
-}
-</style>
