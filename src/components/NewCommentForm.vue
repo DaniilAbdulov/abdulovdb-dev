@@ -1,9 +1,9 @@
 <template>
     <div class="create">
         <form @submit.prevent>
-            <input type="text" placeholder="Title" v-model="title" />
+            <input type="text" placeholder="@email" v-model="email" />
             <input type="text" placeholder="Body" v-model="body" />
-            <button type="submit" @click="createPost">Create</button>
+            <button type="submit" @click="createComment">Create comment</button>
         </form>
     </div>
 </template>
@@ -11,27 +11,25 @@
 export default {
     data() {
         return {
-            title: "",
+            email: "",
             body: "",
-            like: 0,
         };
     },
     methods: {
-        createPost() {
+        createComment() {
             const currentDate = new Date();
             const options = {
                 dateStyle: "medium",
                 timeStyle: "short",
             };
-            const post = {
+            const newComment = {
                 id: Date.now(),
-                title: this.title,
+                email: this.email,
                 body: this.body,
-                like: this.like,
                 time: currentDate.toLocaleString("ru", options),
             };
-            this.$emit("create", post);
-            (this.title = ""), (this.body = "");
+            this.$emit("create", newComment);
+            (this.email = ""), (this.body = "");
         },
     },
 };

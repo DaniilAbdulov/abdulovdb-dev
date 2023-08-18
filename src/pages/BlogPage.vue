@@ -3,10 +3,7 @@
         <div class="blog__wrapper">
             <div class="blog__content">
                 <post-form @create="createPost"></post-form>
-                <posts-list
-                    :posts="posts"
-                    @remove="removePostFromBlog"
-                ></posts-list>
+                <posts-list :posts="posts" :comments="comments"></posts-list>
             </div>
         </div>
     </div>
@@ -22,31 +19,56 @@ export default {
     data() {
         return {
             posts: [],
+            comments: [],
+            like: 0,
         };
     },
     methods: {
         createPost(post) {
             this.posts.push(post);
         },
-        async getPosts() {
-            const response = await fetch(
-                "https://jsonplaceholder.typicode.com/posts?_limit=5"
-            );
-            if (!response.ok) {
-                throw new Error("Errorrrrr");
-            } else {
-                const json = await response.json();
-                this.posts = json;
+
+        async getPostsAndComments() {
+            try {
+                let response = await fetch(
+                    `https://jsonplaceholder.typicode.com/posts?_limit=5`
+                );
+                if (!response.ok) {
+                    throw new Error("Errorrrrr");
+                } else {
+                    this.posts = await response.json();
+                    const currentDate = new Date();
+                    const options = {
+                        dateStyle: "medium",
+                        timeStyle: "short",
+                    };
+                    this.posts.forEach((post) => {
+                        post.like = Math.random().toFixed(1) * 10;
+                        post.time = currentDate.toLocaleString("ru", options);
+                    });
+                    this.getAllComments();
+                }
+            } catch (error) {
+                console.error(error);
             }
         },
-        removePostFromBlog(postToRemove) {
-            this.posts = this.posts.filter(
-                (post) => post.id !== postToRemove.id
-            );
+        async getAllComments() {
+            try {
+                let response = await fetch(
+                    `https://jsonplaceholder.typicode.com/comments?_limit=25`
+                );
+                if (!response.ok) {
+                    throw new Error("Errorrrrr");
+                } else {
+                    this.comments = await response.json();
+                }
+            } catch (error) {
+                console.error(error);
+            }
         },
     },
     mounted() {
-        this.getPosts();
+        this.getPostsAndComments();
     },
 };
 </script>
