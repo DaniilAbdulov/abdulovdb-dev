@@ -1,10 +1,12 @@
 <template>
-    <div class="general" v-for="album in albums" :key="album.id">
-        <div class="album-title">{{ years[album[0].userId] }}</div>
-        <div class="sub" v-for="al in album" :key="al.id">
-            <button @click="showPhotosInAlbum(al.id)">
-                {{ al.title }}
-            </button>
+    <div>
+        <div v-for="(album, i) in albums" :key="i" class="general">
+            <div class="album-title">{{ years[album[0].userId] }}</div>
+            <div v-for="al in album" :key="al.id" class="sub">
+                <button @click="showPhotosInAlbum(al)">
+                    {{ al.title }}
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -13,7 +15,7 @@
 export default {
     data() {
         return {
-            albums: [],
+            albums: {},
             years: [
                 0, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014,
             ],
@@ -21,11 +23,12 @@ export default {
     },
     methods: {
         showPhotosInAlbum(value) {
-            console.log(value);
             this.$router.push({
-                path: `/gallery/${value}`,
+                path: `/gallery/${value.id}`,
+                query: { title: value.title },
             });
         },
+
         async getAlbums() {
             try {
                 const response = await fetch(
@@ -40,6 +43,7 @@ export default {
                             acc[album.userId] = [];
                         }
                         acc[album.userId].push(album);
+
                         return acc;
                     }, {});
                 }

@@ -1,5 +1,5 @@
 <template>
-    hello it's page with Album Id = {{ albumId }}
+    <div>---- {{ albumTitle }} ----</div>
     <div v-for="photo in photos" :key="photo.id">
         <div class="photo">
             <div class="photo__title">{{ photo.title }}</div>
@@ -18,6 +18,9 @@ export default {
         };
     },
     computed: {
+        albumTitle() {
+            return this.$route.query.title;
+        },
         albumId() {
             return this.$route.params.id;
         },
@@ -32,7 +35,6 @@ export default {
                     throw new Error("Photos was not downloaded");
                 } else {
                     this.photos = await response.json();
-                    console.log(this.photos);
                 }
             } catch (error) {
                 console.log(error);
@@ -47,6 +49,9 @@ export default {
 
 <style>
 .photo {
+    margin-bottom: 20px;
+}
+.photo__title {
     margin-bottom: 20px;
 }
 .photo__image {

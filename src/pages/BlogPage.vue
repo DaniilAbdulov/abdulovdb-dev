@@ -2,12 +2,15 @@
     <div class="blog">
         <div class="blog__wrapper">
             <div class="blog__content">
-                <create-button @click="showDialog">+</create-button>
-                <my-dialog v-model:show="dialogVisible">
-                    <post-form @create="createPost"></post-form>
-                </my-dialog>
+                <div class="blog__buttons">
+                    <create-button @click="showDialog">+</create-button>
+                    <my-dialog v-model:show="dialogVisible">
+                        <post-form @create="createPost"></post-form>
+                    </my-dialog>
+                    <search-posts v-model="searchQuery"></search-posts>
+                </div>
                 <posts-list
-                    :posts="posts"
+                    :posts="searchPosts"
                     @remove="removePost"
                     :comments="comments"
                 ></posts-list>
@@ -18,10 +21,12 @@
 <script>
 import PostForm from "@/components/PostForm.vue";
 import PostsList from "@/components/PostsList.vue";
+import SearchPosts from "@/components/SearchPosts.vue";
 export default {
     components: {
         PostsList,
         PostForm,
+        SearchPosts,
     },
     data() {
         return {
@@ -29,6 +34,7 @@ export default {
             comments: [],
             like: 0,
             dialogVisible: false,
+            searchQuery: "",
         };
     },
     methods: {
@@ -84,11 +90,29 @@ export default {
     mounted() {
         this.getPostsAndComments();
     },
+    computed: {
+        searchPosts() {
+            return this.posts.filter(
+                (post) =>
+                    post.title
+                        .toLowerCase()
+                        .includes(this.searchQuery.toLowerCase()) ||
+                    post.body
+                        .toLowerCase()
+                        .includes(this.searchQuery.toLowerCase())
+            );
+        },
+    },
 };
 </script>
 <style>
 .blog__wrapper {
     max-width: 1280px;
     margin: 0 auto;
+}
+.blog__buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 </style>
