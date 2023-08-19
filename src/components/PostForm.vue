@@ -36,4 +36,21 @@ export default {
     },
 };
 </script>
-<style></style>
+<style scoped>
+form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    height: 40px;
+    margin-bottom: 20px;
+}
+textarea {
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+button {
+    border: 1px solid black;
+    padding: 10px;
+}
+</style>

@@ -1,18 +1,21 @@
 <template>
-    <router-link to="/blog">Back to the Posts</router-link>
+    <loading-block v-if="!dataIsLoaded"></loading-block>
     <div>
-        <div>{{ postTitle }}</div>
-        <div>{{ postBody }}</div>
-        <div v-for="com in comments" :key="com.id">
-            <div>{{ com.email }}</div>
-            <div>{{ com.body }}</div>
-            <div>{{ com.time }}</div>
-            <social-button @click="removeComment(com.id)"
-                >Delete comment</social-button
-            >
+        <router-link to="/blog">Back to the Posts</router-link>
+        <div>
+            <div>{{ postTitle }}</div>
+            <div>{{ postBody }}</div>
+            <div v-for="com in comments" :key="com.id">
+                <div>{{ com.email }}</div>
+                <div>{{ com.body }}</div>
+                <div>{{ com.time }}</div>
+                <social-button @click="removeComment(com.id)"
+                    >Delete comment</social-button
+                >
+            </div>
         </div>
+        <new-comment-form @create="createComment"></new-comment-form>
     </div>
-    <new-comment-form @create="createComment"></new-comment-form>
 </template>
 
 <script>
@@ -27,6 +30,7 @@ export default {
             postId: this.$route.params.id,
             postTitle: this.$route.query.title,
             postBody: this.$route.query.body,
+            dataIsLoaded: false,
         };
     },
     methods: {
@@ -53,6 +57,7 @@ export default {
                             options
                         );
                     });
+                    this.dataIsLoaded = true;
                 }
             } catch (error) {
                 console.error(error);

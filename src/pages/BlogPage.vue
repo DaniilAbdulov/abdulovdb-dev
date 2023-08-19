@@ -1,5 +1,6 @@
 <template>
-    <div class="blog">
+    <loading-block v-if="!dataIsLoaded"></loading-block>
+    <div class="blog" v-else>
         <div class="blog__wrapper">
             <div class="blog__content">
                 <div class="blog__buttons">
@@ -35,6 +36,7 @@ export default {
             like: 0,
             dialogVisible: false,
             searchQuery: "",
+            dataIsLoaded: false,
         };
     },
     methods: {
@@ -75,12 +77,13 @@ export default {
         async getAllComments() {
             try {
                 let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/comments?_limit=25`
+                    `https://jsonplaceholder.typicode.com/comments`
                 );
                 if (!response.ok) {
                     throw new Error("Errorrrrr");
                 } else {
                     this.comments = await response.json();
+                    this.dataIsLoaded = true;
                 }
             } catch (error) {
                 console.error(error);

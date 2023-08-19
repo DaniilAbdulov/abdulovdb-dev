@@ -23,4 +23,8 @@ button {
     background-color: transparent;
     cursor: pointer;
 }
+.app {
+    max-width: 90%;
+    margin: 0 auto;
+}
 </style>

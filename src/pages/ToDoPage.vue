@@ -1,5 +1,6 @@
 <template>
-    <div class="todoPage">
+    <loading-block v-if="!dataIsLoaded"></loading-block>
+    <div v-else class="todoPage">
         <new-task @create="createTask"></new-task>
         <task-list :todos="todos" @remove="removeTodo"></task-list>
     </div>
@@ -15,6 +16,7 @@ export default {
     data() {
         return {
             todos: [],
+            dataIsLoaded: false,
         };
     },
     methods: {
@@ -27,12 +29,13 @@ export default {
         async getToDos() {
             try {
                 const response = await fetch(
-                    "https://jsonplaceholder.typicode.com/todos?_limit=15"
+                    "https://jsonplaceholder.typicode.com/todos?_limit=5"
                 );
                 if (!response.ok) {
                     throw new Error("Errorrrrrrrr");
                 } else {
                     this.todos = await response.json();
+                    this.dataIsLoaded = true;
                 }
             } catch (error) {
                 console.log(error);
@@ -46,8 +49,6 @@ export default {
 </script>
 <style>
 .todoPage {
-    max-width: 80%;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
 }

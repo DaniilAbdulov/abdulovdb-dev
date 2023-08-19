@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <loading-block v-if="!dataIsLoaded"></loading-block>
+    <div v-else>
         <div v-for="(album, i) in albums" :key="i" class="general">
-            <div class="album-title">{{ years[album[0].userId] }}</div>
-            <div v-for="al in album" :key="al.id" class="sub">
+            <div class="year">{{ years[album[0].userId] }}</div>
+            <div v-for="al in album" :key="al.id" class="album">
                 <button @click="showPhotosInAlbum(al)">
                     {{ al.title }}
                 </button>
@@ -19,6 +20,7 @@ export default {
             years: [
                 0, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014,
             ],
+            dataIsLoaded: false,
         };
     },
     methods: {
@@ -46,6 +48,7 @@ export default {
 
                         return acc;
                     }, {});
+                    this.dataIsLoaded = true;
                 }
             } catch (error) {
                 console.log(error);
@@ -60,13 +63,17 @@ export default {
 
 <style>
 .general {
-    border: 1px solid red;
+    border: 10px solid red;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
-.sub {
+.album {
+    padding: 10px;
     border: 1px solid black;
 }
-.album-title {
+.year {
     font-size: 30px;
     font-weight: bold;
 }
