@@ -10,6 +10,11 @@
                 </button>
             </li>
             <li class="parent">
+                <button class="link" @click="$router.push('/gallery')">
+                    Gallery
+                </button>
+            </li>
+            <li class="parent">
                 <button class="link" @click="$router.push('/blog')">
                     Blog
                 </button>
