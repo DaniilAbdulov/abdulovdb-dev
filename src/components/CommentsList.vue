@@ -13,7 +13,7 @@
                         </div>
                         <div class="comment__delete">
                             <trash-button
-                                @click="removeComment(com.id)"
+                                @click="$emit('remove', com.id)"
                             ></trash-button>
                         </div>
                     </div>
@@ -31,6 +31,7 @@ export default {
             reqired: true,
         },
     },
+    emits: ["remove"],
 };
 </script>
 
@@ -50,6 +51,7 @@ export default {
 .comment__author {
     font-size: 15px;
     writing-mode: vertical-lr;
+
     transform: rotate(-180deg);
 }
 .comment__content {

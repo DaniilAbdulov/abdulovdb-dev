@@ -9,7 +9,10 @@
             <div class="post__body">{{ postBody }}</div>
         </div>
         <new-comment-form @create="createComment"></new-comment-form>
-        <comments-list :comments="comments"></comments-list>
+        <comments-list
+            :comments="comments"
+            @remove="removeComment"
+        ></comments-list>
     </div>
 </template>
 
