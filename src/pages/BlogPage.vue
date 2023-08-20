@@ -53,7 +53,7 @@ export default {
         async getPostsAndComments() {
             try {
                 let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/posts?_limit=5`
+                    `https://jsonplaceholder.typicode.com/posts`
                 );
                 if (!response.ok) {
                     throw new Error("Errorrrrr");

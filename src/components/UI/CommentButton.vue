@@ -2,7 +2,11 @@
     <div class="comment-button">
         <button>
             <div class="comment-button__logo">
-                <img src="@/assets/comment.svg" alt="comment" />
+                <img
+                    class="img-button"
+                    src="@/assets/comment.svg"
+                    alt="comment"
+                />
             </div>
         </button>
         <slot></slot>

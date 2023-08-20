@@ -81,6 +81,7 @@ export default {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px black;
+    overflow: hidden;
 }
 .post__time {
     margin-top: 10px;
@@ -90,11 +91,13 @@ export default {
 }
 .post__content {
     flex: 0 1 90%;
+    overflow-wrap: break-word;
 }
 .post__title {
     font-size: 32px;
     color: #6eeb83;
     margin-bottom: 20px;
+    overflow-wrap: break-word;
 }
 .post__title::first-letter {
     text-transform: uppercase;
@@ -103,8 +106,10 @@ export default {
     text-transform: uppercase;
 }
 .post__body {
+    font-style: italic;
     font-size: 20px;
     margin-bottom: 20px;
+    overflow-wrap: break-word;
 }
 .post__buttons {
     display: flex;
