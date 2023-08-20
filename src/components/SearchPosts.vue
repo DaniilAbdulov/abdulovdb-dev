@@ -15,7 +15,9 @@
                     />
                 </div>
             </Transition>
-            <div class="search__logo">S</div>
+            <div class="search__logo">
+                <img src="@/assets/search.svg" alt="" srcset="" />
+            </div>
         </div>
     </div>
 </template>
@@ -56,6 +58,14 @@ export default {
 }
 .search__logo {
     margin: 0px 10px;
+    max-width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search__logo img {
+    object-fit: cover;
+    width: 100%;
 }
 .slide-fade-enter-active {
     transition: all 0.5s ease-out;

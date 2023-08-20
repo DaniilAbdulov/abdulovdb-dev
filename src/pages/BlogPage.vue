@@ -109,6 +109,8 @@ export default {
 };
 </script>
 <style>
+.blog {
+}
 .blog__wrapper {
     max-width: 1280px;
     margin: 0 auto;
@@ -117,5 +119,6 @@ export default {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 20px;
 }
 </style>

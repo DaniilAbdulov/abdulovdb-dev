@@ -2,7 +2,9 @@
     <loading-block v-if="!dataIsLoaded"></loading-block>
 
     <div v-else>
-        <router-link to="/gallery">Back to the Gallery</router-link>
+        <router-link class="routerLink" to="/gallery"
+            ><back-button></back-button
+        ></router-link>
         <div>---- {{ albumTitle }} ----</div>
         <div v-for="photo in photos" :key="photo.id">
             <div class="photo">

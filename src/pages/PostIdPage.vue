@@ -1,7 +1,9 @@
 <template>
     <loading-block v-if="!dataIsLoaded"></loading-block>
     <div>
-        <router-link to="/blog">Back to the Posts</router-link>
+        <router-link class="routerLink" to="/blog"
+            ><back-button></back-button
+        ></router-link>
         <div>
             <div>{{ postTitle }}</div>
             <div>{{ postBody }}</div>
