@@ -24,9 +24,9 @@
                         </div>
                     </div>
                     <div class="post__delete">
-                        <social-button @click="$emit('remove', post)"
-                            >Delete</social-button
-                        >
+                        <trash-button
+                            @click="$emit('remove', post)"
+                        ></trash-button>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,12 @@ export default {
     font-size: 32px;
     color: #6eeb83;
     margin-bottom: 20px;
+}
+.post__title::first-letter {
+    text-transform: uppercase;
+}
+.post__body::first-letter {
+    text-transform: uppercase;
 }
 .post__body {
     font-size: 20px;

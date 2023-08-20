@@ -5,6 +5,7 @@ import LoadingBlock from "@/components/UI/LoadingBlock";
 import BackButton from "@/components/UI/BackButton";
 import LikeButton from "@/components/UI/LikeButton";
 import CommentButton from "@/components/UI/CommentButton";
+import TrashButton from "@/components/UI/TrashButton";
 
 export default [
     SocialButton,
@@ -14,4 +15,5 @@ export default [
     BackButton,
     LikeButton,
     CommentButton,
+    TrashButton,
 ];
