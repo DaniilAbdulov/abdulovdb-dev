@@ -10,12 +10,14 @@
                     </my-dialog>
                     <search-posts v-model="searchQuery"></search-posts>
                 </div>
-                <posts-list
-                    :posts="searchPosts"
-                    @remove="removePost"
-                    :comments="comments"
-                ></posts-list>
-                <div v-intersection="loadMorePosts" class="observer"></div>
+                <div class="blog__body">
+                    <posts-list
+                        :posts="searchPosts"
+                        @remove="removePost"
+                        :comments="comments"
+                    ></posts-list>
+                    <div v-intersection="loadMorePosts" class="observer"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -79,7 +81,7 @@ export default {
             this.dialogVisible = true;
         },
         createPost(post) {
-            this.posts.push(post);
+            this.posts.unshift(post);
             this.dialogVisible = false;
         },
         removePost(post) {
@@ -155,6 +157,8 @@ export default {
 <style>
 .blog {
 }
+.blog__content {
+}
 .blog__wrapper {
     max-width: 1280px;
     margin: 0 auto;
@@ -164,6 +168,8 @@ export default {
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+}
+.blog__body {
 }
 .observer {
     height: 30px;

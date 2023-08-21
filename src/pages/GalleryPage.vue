@@ -2,11 +2,25 @@
     <loading-block v-if="!dataIsLoaded"></loading-block>
     <div v-else>
         <div v-for="(album, i) in albums" :key="i" class="general">
-            <div class="year">{{ years[album[0].userId] }}</div>
-            <div v-for="al in album" :key="al.id" class="album">
-                <button @click="showPhotosInAlbum(al)">
-                    {{ al.title }}
-                </button>
+            <div class="general__year">{{ years[album[0].userId] }}</div>
+            <div class="general__albums albums">
+                <div class="albums__container">
+                    <div
+                        class="albums__row"
+                        v-for="(albumRow, j) in createAlbumRows(album)"
+                        :key="`row-${j}`"
+                    >
+                        <div
+                            v-for="(al, k) in albumRow"
+                            :key="`album-${k}`"
+                            class="general__album albums__item"
+                        >
+                            <button @click="showPhotosInAlbum(al)">
+                                {{ al.title }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,6 +38,21 @@ export default {
         };
     },
     methods: {
+        createAlbumRows(album) {
+            const albumMatrix = [];
+            const cols = 2;
+            const rows = 5;
+
+            for (let i = 0, x = 0; i < rows; i++) {
+                albumMatrix[i] = [];
+                for (let j = 0; j < cols && x < album.length; j++, x++) {
+                    albumMatrix[i].push(album[x]);
+                }
+            }
+
+            return albumMatrix;
+        },
+
         showPhotosInAlbum(value) {
             this.$router.push({
                 path: `/gallery/${value.id}`,
@@ -66,15 +95,24 @@ export default {
     border: 10px solid red;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     margin-bottom: 20px;
 }
-.album {
+.general__year {
+    font-size: 30px;
+    font-weight: bold;
+}
+.albums {
     padding: 10px;
     border: 1px solid black;
 }
-.year {
-    font-size: 30px;
-    font-weight: bold;
+.albums__container {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.albums__row {
+}
+.albums__item {
+    border: 2px solid pink;
 }
 </style>
