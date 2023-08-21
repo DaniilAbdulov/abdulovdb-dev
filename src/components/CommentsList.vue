@@ -47,6 +47,7 @@ export default {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: center;
 }
 .comment__author {
     font-size: 15px;

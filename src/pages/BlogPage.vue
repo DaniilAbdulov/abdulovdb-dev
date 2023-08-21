@@ -15,6 +15,7 @@
                     @remove="removePost"
                     :comments="comments"
                 ></posts-list>
+                <div v-intersection="loadMorePosts" class="observer"></div>
             </div>
         </div>
     </div>
@@ -37,9 +38,43 @@ export default {
             dialogVisible: false,
             searchQuery: "",
             dataIsLoaded: false,
+            postPage: 1,
+            postLimit: 10,
+            totalPage: 0,
         };
     },
     methods: {
+        async loadMorePosts() {
+            try {
+                this.postPage += 1;
+                const response = await fetch(
+                    `https://jsonplaceholder.typicode.com/posts?_page=${this.postPage}&_limit=${this.postLimit}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Error");
+                }
+
+                const totalCount = parseInt(
+                    response.headers.get("x-total-count"),
+                    10
+                );
+                this.totalPage = Math.ceil(totalCount / this.postLimit);
+                const data = await response.json();
+                this.posts = [...this.posts, ...data];
+                const currentDate = new Date();
+                const options = {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                };
+                this.posts.forEach((post) => {
+                    post.like = Math.floor(Math.random() * 10);
+                    post.time = currentDate.toLocaleString("ru", options);
+                });
+            } catch (error) {
+                alert(error);
+            }
+        },
         showDialog() {
             this.dialogVisible = true;
         },
@@ -50,14 +85,19 @@ export default {
         removePost(post) {
             this.posts = this.posts.filter((p) => p.id !== post.id);
         },
-        async getPostsAndComments() {
+        async getPosts() {
             try {
                 let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/posts`
+                    `https://jsonplaceholder.typicode.com/posts?_page=${this.postPage}&_limit=${this.postLimit}`
                 );
                 if (!response.ok) {
                     throw new Error("Errorrrrr");
                 } else {
+                    const totalCount = parseInt(
+                        response.headers.get("x-total-count"),
+                        10
+                    );
+                    this.totalPage = Math.ceil(totalCount / this.postLimit);
                     this.posts = await response.json();
                     const currentDate = new Date();
                     const options = {
@@ -65,10 +105,9 @@ export default {
                         timeStyle: "short",
                     };
                     this.posts.forEach((post) => {
-                        post.like = Math.random().toFixed(1) * 10;
+                        post.like = Math.floor(Math.random() * 10);
                         post.time = currentDate.toLocaleString("ru", options);
                     });
-                    this.getAllComments();
                 }
             } catch (error) {
                 console.error(error);
@@ -91,7 +130,8 @@ export default {
         },
     },
     mounted() {
-        this.getPostsAndComments();
+        this.getPosts();
+        this.getAllComments();
     },
     computed: {
         searchPosts() {
@@ -104,6 +144,10 @@ export default {
                         .toLowerCase()
                         .includes(this.searchQuery.toLowerCase())
             );
+        },
+
+        allPostsAreLoaded() {
+            return this.postPage >= this.totalPage;
         },
     },
 };
@@ -120,5 +164,8 @@ export default {
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+}
+.observer {
+    height: 30px;
 }
 </style>
