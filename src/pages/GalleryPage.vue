@@ -92,27 +92,66 @@ export default {
 
 <style>
 .general {
-    border: 10px solid red;
+    border-bottom: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 .general__year {
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
 }
 .albums {
     padding: 10px;
-    border: 1px solid black;
 }
 .albums__container {
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .albums__row {
+    flex: 0 1 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+@media (max-width: 1439px) {
+    .albums__row {
+        flex: 0 1 50%;
+    }
+}
+@media (max-width: 573px) {
+    .albums__row {
+        flex: 0 1 100%;
+    }
 }
 .albums__item {
     border: 2px solid pink;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    min-height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    transition: all 0.3s ease-in;
+}
+.albums__item:hover {
+    background: rgba(0, 0, 0, 0.596);
+    color: white;
+}
+@media (max-width: 767px) {
+    .albums__item {
+        min-height: 100px;
+        font-size: 20px;
+    }
+}
+@media (max-width: 573px) {
+    .albums__item {
+        min-height: 80px;
+        font-size: 16px;
+    }
 }
 </style>
