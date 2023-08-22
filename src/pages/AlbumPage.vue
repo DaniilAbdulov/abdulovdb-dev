@@ -117,11 +117,12 @@ export default {
     object-fit: cover;
 }
 .photo__label {
-    text-align: center;
+    text-align: right;
     font-size: 20px;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
 }
 </style>
