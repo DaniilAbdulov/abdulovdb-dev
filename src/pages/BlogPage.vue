@@ -8,15 +8,22 @@
                     <my-dialog v-model:show="dialogVisible">
                         <post-form @create="createPost"></post-form>
                     </my-dialog>
-                    <search-posts v-model="searchQuery"></search-posts>
+                    <search-value v-model="searchQuery"></search-value>
                 </div>
                 <div class="blog__body">
                     <posts-list
                         :posts="searchPosts"
                         @remove="removePost"
                         :comments="comments"
+                        :dialogVisible="dialogVisible"
                     ></posts-list>
-                    <div v-intersection="loadMorePosts" class="observer"></div>
+                    <div
+                        v-intersection="loadMorePosts"
+                        class="observer"
+                        v-if="!allPostsAreLoaded"
+                    >
+                        Loading posts...
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,12 +32,12 @@
 <script>
 import PostForm from "@/components/PostForm.vue";
 import PostsList from "@/components/PostsList.vue";
-import SearchPosts from "@/components/SearchPosts.vue";
+import SearchValue from "@/components/SearchValue.vue";
 export default {
     components: {
         PostsList,
         PostForm,
-        SearchPosts,
+        SearchValue,
     },
     data() {
         return {
@@ -173,5 +180,8 @@ export default {
 }
 .observer {
     height: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 </style>

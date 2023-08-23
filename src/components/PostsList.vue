@@ -1,36 +1,40 @@
 <template>
     <TransitionGroup name="list" tag="ul">
-        <div v-for="post in posts" :key="post.id" class="post">
-            <div class="post__time">{{ post.time }}</div>
-            <div class="post__content">
-                <div class="post__title">{{ post.title }}</div>
-                <div class="post__body">{{ post.body }}</div>
-                <div class="post__buttons">
-                    <div class="post__lnc">
-                        <div class="post__like">
-                            <like-button
-                                @click="onButtonClick(post)"
-                                :class="{
-                                    'like-button--active': post.buttonClicked,
-                                }"
-                            >
-                                {{ post.like }}
-                            </like-button>
+        <div v-if="posts.length">
+            <div v-for="post in posts" :key="post.id" class="post">
+                <div class="post__time">{{ post.time }}</div>
+                <div class="post__content">
+                    <div class="post__title">{{ post.title }}</div>
+                    <div class="post__body">{{ post.body }}</div>
+                    <div class="post__buttons">
+                        <div class="post__lnc">
+                            <div class="post__like">
+                                <like-button
+                                    @click="onButtonClick(post)"
+                                    :class="{
+                                        'like-button--active':
+                                            post.buttonClicked,
+                                    }"
+                                >
+                                    {{ post.like }}
+                                </like-button>
+                            </div>
+                            <div class="post__com">
+                                <comment-button @click="showPostComments(post)">
+                                    {{ getCommentsCount(post.id) }}
+                                </comment-button>
+                            </div>
                         </div>
-                        <div class="post__com">
-                            <comment-button @click="showPostComments(post)">
-                                {{ getCommentsCount(post.id) }}
-                            </comment-button>
+                        <div class="post__delete">
+                            <trash-button
+                                @click="$emit('remove', post)"
+                            ></trash-button>
                         </div>
-                    </div>
-                    <div class="post__delete">
-                        <trash-button
-                            @click="$emit('remove', post)"
-                        ></trash-button>
                     </div>
                 </div>
             </div>
         </div>
+        <empty-list v-else-if="!dialogVisible"></empty-list>
     </TransitionGroup>
 </template>
 
@@ -46,6 +50,9 @@ export default {
         comments: {
             type: Array,
             required: true,
+        },
+        dialogVisible: {
+            type: Boolean,
         },
     },
     data() {

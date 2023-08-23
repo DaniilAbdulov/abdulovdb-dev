@@ -42,6 +42,7 @@ export default {
     padding: 10px;
     box-shadow: 1px 1px 1px 1px black;
     border-radius: 10px;
+    position: relative;
 }
 .comment {
     display: flex;

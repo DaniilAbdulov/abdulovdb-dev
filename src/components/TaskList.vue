@@ -1,7 +1,7 @@
 <template>
-    <TransitionGroup name="list" tag="ul">
-        <div v-for="task in todos" :key="task.id">
-            <div class="tasks">
+    <div v-if="todos.length">
+        <TransitionGroup name="list" tag="ul">
+            <div v-for="task in todos" :key="task.id" class="tasks">
                 <ul class="tasks__content">
                     <li class="task">
                         <div class="task__body">
@@ -9,9 +9,7 @@
                                 class="task__completed"
                                 :class="{ btnCompleted: task.completed }"
                                 @click="task.completed = true"
-                            >
-                                {{ task.completed }}
-                            </button>
+                            ></button>
                             <div
                                 class="task__title"
                                 :class="{ completed: task.completed }"
@@ -27,8 +25,9 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </TransitionGroup>
+        </TransitionGroup>
+    </div>
+    <empty-list v-else></empty-list>
 </template>
 <script>
 export default {
@@ -50,15 +49,17 @@ export default {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 .task {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
     margin-bottom: 5px;
-    border-bottom: 1px solid #ccc;
+    border: 2px solid #ccc;
+    border-radius: 20px;
 }
 .task__body {
     display: flex;
@@ -66,24 +67,28 @@ export default {
     align-items: center;
 }
 .task__completed {
-    font-size: 16px;
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border: none;
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 50%;
     margin-right: 10px;
+    padding: 1px;
 }
 .task__completed.btnCompleted {
-    text-decoration: line-through;
+    background-color: #6eeb83;
+    border: 3px solid black;
 }
 
 .task__title {
     word-wrap: normal;
     font-size: 24px;
 }
+.task__title::first-letter {
+    text-transform: uppercase;
+}
 .task__title.completed {
     text-decoration: line-through;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .task__delete {

@@ -9,10 +9,13 @@
             <div class="post__body">{{ postBody }}</div>
         </div>
         <new-comment-form @create="createComment"></new-comment-form>
-        <comments-list
-            :comments="comments"
-            @remove="removeComment"
-        ></comments-list>
+        <div v-if="comments.length">
+            <comments-list
+                :comments="comments"
+                @remove="removeComment"
+            ></comments-list>
+        </div>
+        <empty-list v-else></empty-list>
     </div>
 </template>
 
@@ -72,4 +75,12 @@ export default {
     },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.empty-list {
+    margin-top: 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(-0%, -0%);
+}
+</style>

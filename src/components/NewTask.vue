@@ -39,12 +39,12 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     gap: 20px;
 }
 .new-task input {
     font-size: 24px;
-    width: 50%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;

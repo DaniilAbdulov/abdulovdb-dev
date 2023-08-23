@@ -1,22 +1,28 @@
 <template>
     <loading-block v-if="!dataIsLoaded"></loading-block>
     <div v-else class="todo__content">
-        <new-task @create="createTask"></new-task>
-        <task-list :todos="todos" @remove="removeTodo"></task-list>
+        <div class="todo__functional">
+            <new-task @create="createTask"></new-task>
+            <search-value v-model="searchQuery"></search-value>
+        </div>
+        <task-list :todos="searchTodos" @remove="removeTodo"></task-list>
     </div>
 </template>
 <script>
 import TaskList from "@/components/TaskList.vue";
 import NewTask from "@/components/NewTask.vue";
+import SearchValue from "@/components/SearchValue.vue";
 export default {
     components: {
         TaskList,
         NewTask,
+        SearchValue,
     },
     data() {
         return {
             todos: [],
             dataIsLoaded: false,
+            searchQuery: "",
         };
     },
     methods: {
@@ -29,7 +35,7 @@ export default {
         async getToDos() {
             try {
                 const response = await fetch(
-                    "https://jsonplaceholder.typicode.com/todos?_limit=5"
+                    "https://jsonplaceholder.typicode.com/todos"
                 );
                 if (!response.ok) {
                     throw new Error("Errorrrrrrrr");
@@ -45,10 +51,26 @@ export default {
     mounted() {
         this.getToDos();
     },
+    computed: {
+        searchTodos() {
+            return this.todos.filter((todo) =>
+                todo.title
+                    .toLowerCase()
+                    .includes(this.searchQuery.toLowerCase())
+            );
+        },
+    },
 };
 </script>
 <style scoped>
+.todo__functional {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 .new-task {
-    margin-bottom: 20px;
+    flex: 1 1 auto;
 }
 </style>
