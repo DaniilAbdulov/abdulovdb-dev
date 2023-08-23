@@ -23,6 +23,10 @@ button {
     background-color: transparent;
     cursor: pointer;
 }
+ul,
+ul li {
+    list-style: none;
+}
 .app {
     max-width: 90%;
     margin: 0 auto;

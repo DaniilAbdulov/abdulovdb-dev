@@ -1,6 +1,6 @@
 <template>
     <loading-block v-if="!dataIsLoaded"></loading-block>
-    <div v-else class="todoPage">
+    <div v-else class="todo__content">
         <new-task @create="createTask"></new-task>
         <task-list :todos="todos" @remove="removeTodo"></task-list>
     </div>
@@ -24,7 +24,7 @@ export default {
             this.todos = this.todos.filter((p) => p.id !== value.id);
         },
         createTask(newTask) {
-            this.todos.push(newTask);
+            this.todos.unshift(newTask);
         },
         async getToDos() {
             try {
@@ -47,9 +47,8 @@ export default {
     },
 };
 </script>
-<style>
-.todoPage {
-    display: flex;
-    flex-direction: column;
+<style scoped>
+.new-task {
+    margin-bottom: 20px;
 }
 </style>

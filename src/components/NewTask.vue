@@ -6,7 +6,10 @@
             v-model="title"
             @keydown.enter="createTask"
         />
-        <create-button type="submit" @click="createTask">+</create-button>
+
+        <button type="submit" @click="createTask" class="create-button">
+            Add
+        </button>
     </div>
 </template>
 <script>
@@ -25,23 +28,37 @@ export default {
                 completed: this.completed,
             };
             this.$emit("create", newTask);
+            this.title = "";
         },
     },
     emits: ["create"],
 };
 </script>
-<style>
+<style scoped>
 .new-task {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 10px;
+    padding: 20px 0;
+    gap: 20px;
 }
 .new-task input {
-    width: 100%;
-    height: 30px;
-    border-radius: 10px;
+    font-size: 24px;
+    width: 50%;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+}
+.create-button {
+    font-size: 24px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease-in;
+}
+.create-button:hover {
+    background-color: #ddd;
 }
 </style>

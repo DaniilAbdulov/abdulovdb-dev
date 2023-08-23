@@ -15,7 +15,14 @@
                     <img :src="photo.url" @load="handleImageLoad" alt="" />
                 </div>
                 <div class="photo__label">
-                    <like-button></like-button>
+                    <like-button
+                        @click="onButtonClick(photo)"
+                        :class="{
+                            'like-button--active': photo.buttonClicked,
+                        }"
+                    >
+                        {{ photo.like }}
+                    </like-button>
                     <p>{{ photo.title }}</p>
                 </div>
             </div>
@@ -42,6 +49,14 @@ export default {
         },
     },
     methods: {
+        async onButtonClick(photo) {
+            photo.like++;
+            photo.buttonClicked = true;
+
+            setTimeout(() => {
+                photo.buttonClicked = false;
+            }, 500);
+        },
         handleImageLoad() {
             this.imagesLoaded++;
             if (this.imagesLoaded + 1 == this.totalImages) {
@@ -58,6 +73,9 @@ export default {
                 } else {
                     this.photos = await response.json();
                     this.totalImages = this.photos.length;
+                    this.photos.forEach((photo) => {
+                        photo.like = Math.floor(Math.random() * 10);
+                    });
                     // console.log(response);
                     // this.dataIsLoaded = true;
                 }
@@ -73,6 +91,16 @@ export default {
 </script>
 
 <style scoped>
+.like-button {
+    font-size: 18px;
+    transition: all 0.2s;
+    flex: 0 1 auto;
+}
+.like-button--active {
+    color: red;
+    font-size: 24px;
+    transform: rotate(5deg);
+}
 .album__content {
     /* background: black; */
     display: none;
@@ -100,14 +128,14 @@ export default {
 }
 .album__item {
     border-radius: 10px;
-    box-shadow: 0px 0px 2px 2px black;
+    box-shadow: 0px 0px 1px 1px black;
     margin: 20px;
     max-width: 500px;
     transition: all 0.2s ease-in;
     cursor: pointer;
 }
 .album__item:hover {
-    box-shadow: 0px 0px 5px 5px black;
+    box-shadow: 0px 0px 3px 3px black;
 }
 .photo__image {
 }
@@ -118,7 +146,7 @@ export default {
 }
 .photo__label {
     text-align: right;
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px;
     display: flex;
     align-items: center;
