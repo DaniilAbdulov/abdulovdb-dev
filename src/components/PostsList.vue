@@ -1,10 +1,10 @@
 <template>
-    <TransitionGroup name="list" tag="ul">
-        <div v-if="posts.length">
+    <div v-if="posts.length">
+        <TransitionGroup name="list" tag="ul">
             <div v-for="post in posts" :key="post.id" class="post">
-                <div class="post__time">{{ post.time }}</div>
                 <div class="post__content">
                     <div class="post__title">{{ post.title }}</div>
+                    <div class="post__time">{{ post.time }}</div>
                     <div class="post__body">{{ post.body }}</div>
                     <div class="post__buttons">
                         <div class="post__lnc">
@@ -33,9 +33,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <empty-list v-else-if="!dialogVisible"></empty-list>
-    </TransitionGroup>
+        </TransitionGroup>
+    </div>
+    <empty-list v-else-if="!dialogVisible"></empty-list>
 </template>
 
 <script>
@@ -89,12 +89,10 @@ export default {
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px black;
     overflow: hidden;
+    justify-content: center;
 }
 .post__time {
-    margin-top: 10px;
-    text-align: left;
-    font-size: 22px;
-    font-weight: bold;
+    margin-bottom: 10px;
 }
 .post__content {
     flex: 0 1 90%;

@@ -67,6 +67,7 @@ export default {
     align-items: center;
 }
 .task__completed {
+    flex-shrink: 0;
     width: 25px;
     height: 25px;
     border: 1px solid black;
@@ -80,8 +81,11 @@ export default {
 }
 
 .task__title {
-    word-wrap: normal;
+    overflow-wrap: break-word;
     font-size: 24px;
+    word-break: break-word;
+    width: 100%;
+    padding: 0px 5px;
 }
 .task__title::first-letter {
     text-transform: uppercase;
