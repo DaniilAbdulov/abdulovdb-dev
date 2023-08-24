@@ -17,13 +17,7 @@
                         :comments="comments"
                         :dialogVisible="dialogVisible"
                     ></posts-list>
-                    <div
-                        v-intersection="loadMorePosts"
-                        class="observer"
-                        v-if="!allPostsAreLoaded"
-                    >
-                        Loading posts...
-                    </div>
+                    <div v-intersection="loadMorePosts" class="observer"></div>
                 </div>
             </div>
         </div>

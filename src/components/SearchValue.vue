@@ -58,7 +58,7 @@ export default {
 }
 .search__logo {
     margin: 0px 10px;
-    max-width: 10px;
+    width: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
