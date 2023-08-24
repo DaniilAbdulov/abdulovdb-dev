@@ -42,6 +42,9 @@ export default {
     padding: 20px 10px;
     gap: 20px;
 }
+.new-task.search {
+    display: none;
+}
 .new-task input {
     font-size: 24px;
     width: 100%;
@@ -50,6 +53,12 @@ export default {
     border-radius: 10px;
     outline: none;
 }
+@media (max-width: 767px) {
+    .new-task input {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
 .create-button {
     font-size: 24px;
     padding: 10px;
@@ -57,6 +66,11 @@ export default {
     border-radius: 10px;
     outline: none;
     transition: all 0.3s ease-in;
+}
+@media (max-width: 767px) {
+    .create-button {
+        font-size: 16px;
+    }
 }
 .create-button:hover {
     background-color: #ddd;

@@ -40,16 +40,16 @@ export default {
     emits: ["remove"],
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .tasks {
     max-width: 1280px;
     margin: 0 auto;
-}
-.tasks__content {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
+    &__content {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
 }
 
 .task {
@@ -60,45 +60,66 @@ export default {
     margin-bottom: 5px;
     border: 2px solid #ccc;
     border-radius: 20px;
-}
-.task__body {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.task__completed {
-    flex-shrink: 0;
-    width: 25px;
-    height: 25px;
-    border: 1px solid black;
-    border-radius: 50%;
-    margin-right: 10px;
-    padding: 1px;
-}
-.task__completed.btnCompleted {
-    background-color: #6eeb83;
-    border: 3px solid black;
-}
+    &__body {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    &__completed {
+        flex-shrink: 0;
+        width: 25px;
+        height: 25px;
+        border: 1px solid black;
+        border-radius: 50%;
+        margin-right: 10px;
+        padding: 1px;
+    }
+    &__completed.btnCompleted {
+        background-color: #6eeb83;
+        border: 3px solid black;
+    }
 
-.task__title {
-    overflow-wrap: break-word;
-    font-size: 24px;
-    word-break: break-word;
-    width: 100%;
-    padding: 0px 5px;
-}
-.task__title::first-letter {
-    text-transform: uppercase;
-}
-.task__title.completed {
-    text-decoration: line-through;
-    opacity: 0.8;
-}
+    &__title {
+        overflow-wrap: break-word;
+        font-size: 24px;
+        word-break: break-word;
+        width: 100%;
+        padding: 0px 5px;
+    }
+    &__title::first-letter {
+        text-transform: uppercase;
+    }
+    &__title.completed {
+        text-decoration: line-through;
+        opacity: 0.8;
+    }
 
-.task__delete {
-    flex-shrink: 0;
-    font-size: 18px;
-    cursor: pointer;
+    &__delete {
+        flex-shrink: 0;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}
+@media (max-width: 767px) {
+    .task {
+        padding: 10px;
+        margin-bottom: 5px;
+        &__body {
+            gap: 5px;
+        }
+        &__completed {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        &__title {
+            font-size: 18px;
+            padding: 0px 5px;
+        }
+        &__delete {
+            font-size: 14px;
+        }
+    }
 }
 .list-enter-active,
 .list-leave-active {
