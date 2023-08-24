@@ -2,14 +2,8 @@
     <div class="search">
         <div
             class="search__content"
-            @mouseover="
-                showSearch = true;
-                searchWindowVisible = true;
-            "
-            @mouseleave="
-                showSearch = false;
-                searchWindowVisible = false;
-            "
+            @mouseover="showSearch = true"
+            @mouseleave="showSearch = false"
         >
             <Transition name="slide-fade">
                 <div class="search__input" v-if="showSearch">
@@ -34,7 +28,6 @@ export default {
         return {
             showSearch: false,
             searchQuery: "",
-            searchWindowVisible: false,
         };
     },
     props: {
