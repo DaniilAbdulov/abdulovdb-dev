@@ -25,7 +25,7 @@ export default {
     gap: 5px;
 }
 .comment-button__logo {
-    max-width: 25px;
+    width: 20px;
 }
 .comment-button__logo img {
     object-fit: cover;

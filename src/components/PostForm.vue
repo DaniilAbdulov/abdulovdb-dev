@@ -39,6 +39,7 @@ export default {
 <style scoped>
 form {
     display: flex;
+    padding: 0px 5px;
     flex-direction: column;
 }
 input {

@@ -21,7 +21,7 @@ export default {
     gap: 5px;
 }
 .like-button__logo {
-    max-width: 25px;
+    width: 20px;
 }
 .like-button__logo img {
     object-fit: cover;

@@ -52,7 +52,7 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 form {
     display: flex;
     flex-direction: column;
@@ -66,6 +66,12 @@ form {
     align-items: center;
     margin-bottom: 10px;
     gap: 5px;
+}
+@media (max-width: 430px) {
+    .form__general {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 .form__author {
     flex: 1 1 auto;

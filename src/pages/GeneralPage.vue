@@ -8,8 +8,10 @@
                 </h1>
                 <h2>
                     Please, go to the
-                    <a class="general__link" href="/about">About</a> section for
-                    more information
+                    <router-link class="general__link" to="/about"
+                        >About</router-link
+                    >
+                    section for more information
                 </h2>
             </div>
             <div class="general__body">
