@@ -40,6 +40,8 @@ export default {
     data() {
         return {
             dataIsLoaded: false,
+            dataFromPosts: false,
+            dataFromComments: false,
         };
     },
     methods: {

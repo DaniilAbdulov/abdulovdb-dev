@@ -1,11 +1,13 @@
-export const PostModule = {
+export const CommentsModule = {
     state: () => ({
         comments: [],
+        dataFromComments: false,
     }),
     mutations: {
         setComments(state, comments) {
             state.comments = comments;
         },
+
         ADD_COMMENT_METADATA(state) {
             const currentDate = new Date();
             const options = {
