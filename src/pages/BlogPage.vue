@@ -8,7 +8,10 @@
                     <my-dialog v-model:show="dialogVisible">
                         <post-form @create="createPost"></post-form>
                     </my-dialog>
-                    <search-value v-model="searchQuery"></search-value>
+                    <search-value
+                        :model-value="searchQuery"
+                        @update:model-value="setSearchQuery"
+                    ></search-value>
                 </div>
                 <div class="blog__body">
                     <posts-list
@@ -27,6 +30,7 @@
 import PostForm from "@/components/PostForm.vue";
 import PostsList from "@/components/PostsList.vue";
 import SearchValue from "@/components/SearchValue.vue";
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
 export default {
     components: {
         PostsList,
@@ -35,87 +39,11 @@ export default {
     },
     data() {
         return {
-            posts: [],
             comments: [],
-            like: 0,
-            dialogVisible: false,
-            searchQuery: "",
             dataIsLoaded: false,
-            postPage: 1,
-            postLimit: 10,
-            totalPage: 0,
         };
     },
     methods: {
-        async loadMorePosts() {
-            try {
-                this.postPage += 1;
-                const response = await fetch(
-                    `https://jsonplaceholder.typicode.com/posts?_page=${this.postPage}&_limit=${this.postLimit}`
-                );
-
-                if (!response.ok) {
-                    throw new Error("Error");
-                }
-
-                const totalCount = parseInt(
-                    response.headers.get("x-total-count"),
-                    10
-                );
-                this.totalPage = Math.ceil(totalCount / this.postLimit);
-                const data = await response.json();
-                this.posts = [...this.posts, ...data];
-                const currentDate = new Date();
-                const options = {
-                    dateStyle: "medium",
-                    timeStyle: "short",
-                };
-                this.posts.forEach((post) => {
-                    post.like = Math.floor(Math.random() * 10);
-                    post.time = currentDate.toLocaleString("ru", options);
-                });
-            } catch (error) {
-                alert(error);
-            }
-        },
-        showDialog() {
-            this.dialogVisible = true;
-        },
-        createPost(post) {
-            this.posts.unshift(post);
-            this.dialogVisible = false;
-        },
-        removePost(post) {
-            this.posts = this.posts.filter((p) => p.id !== post.id);
-        },
-        async getPosts() {
-            try {
-                let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/posts?_page=${this.postPage}&_limit=${this.postLimit}`
-                );
-                if (!response.ok) {
-                    throw new Error("Errorrrrr");
-                } else {
-                    const totalCount = parseInt(
-                        response.headers.get("x-total-count"),
-                        10
-                    );
-                    this.totalPage = Math.ceil(totalCount / this.postLimit);
-                    this.posts = await response.json();
-                    const currentDate = new Date();
-                    const options = {
-                        dateStyle: "medium",
-                        timeStyle: "short",
-                    };
-                    this.posts.forEach((post) => {
-                        post.like = Math.floor(Math.random() * 10);
-                        post.time = currentDate.toLocaleString("ru", options);
-                    });
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        },
         async getAllComments() {
             try {
                 let response = await fetch(
@@ -131,27 +59,35 @@ export default {
                 console.error(error);
             }
         },
+        ...mapMutations({
+            setPostPage: "post/setPostPage",
+            setSearchQuery: "post/setSearchQuery",
+        }),
+        ...mapActions({
+            getPosts: "post/getPosts",
+            loadMorePosts: "post/loadMorePosts",
+            createPost: "post/createPost",
+            removePost: "post/removePost",
+            showDialog: "post/showDialog",
+        }),
     },
     mounted() {
         this.getPosts();
         this.getAllComments();
     },
     computed: {
-        searchPosts() {
-            return this.posts.filter(
-                (post) =>
-                    post.title
-                        .toLowerCase()
-                        .includes(this.searchQuery.toLowerCase()) ||
-                    post.body
-                        .toLowerCase()
-                        .includes(this.searchQuery.toLowerCase())
-            );
-        },
-
-        allPostsAreLoaded() {
-            return this.postPage >= this.totalPage;
-        },
+        ...mapState({
+            posts: (state) => state.post.posts,
+            like: (state) => state.post.like,
+            dialogVisible: (state) => state.post.dialogVisible,
+            searchQuery: (state) => state.post.searchQuery,
+            postPage: (state) => state.post.postPage,
+            postLimit: (state) => state.post.postLimit,
+            totalPage: (state) => state.post.totalPage,
+        }),
+        ...mapGetters({
+            searchPosts: "post/searchPosts",
+        }),
     },
 };
 </script>
