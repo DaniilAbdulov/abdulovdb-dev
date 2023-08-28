@@ -1,16 +1,12 @@
 <template>
     <div class="create">
-        <form @submit.prevent>
+        <form @submit.prevent="createComment">
             <div class="form__general">
                 <div class="form__author">
                     <input type="text" placeholder="@email" v-model="email" />
                 </div>
                 <div>
-                    <button
-                        type="submit"
-                        @click="createComment"
-                        class="form__button"
-                    >
+                    <button type="submit" class="form__button">
                         Оставить комментарий
                     </button>
                 </div>

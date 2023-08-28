@@ -1,7 +1,7 @@
 <template>
-    <div class="comments">
+    <ul class="comments">
         <TransitionGroup name="list">
-            <div v-for="com in comments" :key="com.id" class="comment">
+            <li v-for="com in comments" :key="com.id" class="comment">
                 <div class="comment__author">
                     {{ com.email }}
                 </div>
@@ -18,9 +18,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </li>
         </TransitionGroup>
-    </div>
+    </ul>
 </template>
 
 <script>

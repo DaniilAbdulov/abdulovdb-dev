@@ -1,12 +1,13 @@
 <template>
     <div class="create">
-        <form @submit.prevent @keydown.enter="createPost">
+        <form @submit.prevent="createPost">
             <input type="text" placeholder="Title" v-model="title" />
-            <textarea type="text" placeholder="Body" v-model="body" />
-            <button type="submit" @click="createPost">Create</button>
+            <textarea placeholder="Body" v-model="body"></textarea>
+            <button type="submit">Create</button>
         </form>
     </div>
 </template>
+
 <script>
 export default {
     data() {
@@ -36,6 +37,7 @@ export default {
     },
 };
 </script>
+
 <style scoped>
 form {
     display: flex;

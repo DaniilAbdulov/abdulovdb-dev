@@ -67,7 +67,7 @@ export default {
             }
         },
         createComment(newComment) {
-            this.comments.push(newComment);
+            this.comments.unshift(newComment);
         },
     },
     mounted() {

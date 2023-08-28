@@ -5,7 +5,7 @@
             <div class="blog__content">
                 <div class="blog__buttons">
                     <create-button @click="showDialog">+</create-button>
-                    <my-dialog v-model:show="dialogVisible">
+                    <my-dialog :show="dialogVisible" @update:show="hideDialog">
                         <post-form @create="createPost"></post-form>
                     </my-dialog>
                     <search-value
@@ -39,26 +39,10 @@ export default {
     },
     data() {
         return {
-            comments: [],
             dataIsLoaded: false,
         };
     },
     methods: {
-        async getAllComments() {
-            try {
-                let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/comments`
-                );
-                if (!response.ok) {
-                    throw new Error("Errorrrrr");
-                } else {
-                    this.comments = await response.json();
-                    this.dataIsLoaded = true;
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        },
         ...mapMutations({
             setPostPage: "post/setPostPage",
             setSearchQuery: "post/setSearchQuery",
@@ -69,6 +53,8 @@ export default {
             createPost: "post/createPost",
             removePost: "post/removePost",
             showDialog: "post/showDialog",
+            hideDialog: "post/hideDialog",
+            getAllComments: "comments/getAllComments",
         }),
     },
     mounted() {
@@ -84,6 +70,7 @@ export default {
             postPage: (state) => state.post.postPage,
             postLimit: (state) => state.post.postLimit,
             totalPage: (state) => state.post.totalPage,
+            comments: (state) => state.comments.comments,
         }),
         ...mapGetters({
             searchPosts: "post/searchPosts",

@@ -1,7 +1,7 @@
 <template>
-    <div v-if="posts.length">
+    <ul v-if="posts.length">
         <TransitionGroup name="list" tag="ul">
-            <div v-for="post in posts" :key="post.id" class="post">
+            <li v-for="post in posts" :key="post.id" class="post">
                 <div class="post__content">
                     <div class="post__title">{{ post.title }}</div>
                     <div class="post__time">{{ post.time }}</div>
@@ -32,9 +32,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </li>
         </TransitionGroup>
-    </div>
+    </ul>
     <empty-list v-else-if="!dialogVisible"></empty-list>
 </template>
 

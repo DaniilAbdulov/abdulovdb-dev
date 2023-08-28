@@ -124,6 +124,9 @@ export const PostModule = {
         showDialog({ commit }) {
             commit("SHOW_DIALOG", true);
         },
+        hideDialog({ commit }) {
+            commit("setDialogVisible", false);
+        },
     },
     namespaced: true,
 };
