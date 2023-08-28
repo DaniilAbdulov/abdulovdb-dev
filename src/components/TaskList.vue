@@ -5,11 +5,19 @@
                 <ul class="tasks__content">
                     <li class="task">
                         <div class="task__body">
-                            <button
-                                class="task__completed"
+                            <input
+                                type="radio"
+                                :id="`task-${task.id}`"
+                                name="tasks-group"
+                                class="task__completed hidden"
                                 :class="{ btnCompleted: task.completed }"
-                                @click="task.completed = true"
-                            ></button>
+                                v-model="task.completed"
+                            />
+                            <label
+                                :for="`task-${task.id}`"
+                                class="task__completed-label"
+                                :class="{ btnCompleted: task.completed }"
+                            ></label>
                             <div
                                 class="task__title"
                                 :class="{ completed: task.completed }"
