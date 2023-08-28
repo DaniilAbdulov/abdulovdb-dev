@@ -7,7 +7,14 @@ export const CommentsModule = {
         setComments(state, comments) {
             state.comments = comments;
         },
-
+        CREATE_COMMENT(state, newComment) {
+            state.comments.unshift(newComment);
+        },
+        REMOVE_COMMENT(state, commentToRemove) {
+            state.comments = state.comments.filter(
+                (comment) => comment.id !== commentToRemove.id
+            );
+        },
         ADD_COMMENT_METADATA(state) {
             const currentDate = new Date();
             const options = {
@@ -34,6 +41,12 @@ export const CommentsModule = {
             } catch (error) {
                 console.error(error, "im here");
             }
+        },
+        createComment({ commit }, comment) {
+            commit("CREATE_COMMENT", comment);
+        },
+        removeComment({ commit }, comment) {
+            commit("REMOVE_COMMENT", comment);
         },
     },
     namespaced: true,

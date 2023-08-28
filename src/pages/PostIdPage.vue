@@ -11,7 +11,7 @@
         <new-comment-form @create="createComment"></new-comment-form>
         <div v-if="comments.length">
             <comments-list
-                :comments="comments"
+                :comments="filterComments"
                 @remove="removeComment"
             ></comments-list>
         </div>
@@ -22,6 +22,7 @@
 <script>
 import NewCommentForm from "@/components/NewCommentForm.vue";
 import CommentsList from "@/components/CommentsList.vue";
+import { mapState, mapActions } from "vuex";
 export default {
     components: {
         NewCommentForm,
@@ -29,7 +30,6 @@ export default {
     },
     data() {
         return {
-            comments: [],
             postId: this.$route.params.id,
             postTitle: this.$route.query.title,
             postBody: this.$route.query.body,
@@ -37,41 +37,25 @@ export default {
         };
     },
     methods: {
-        removeComment(value) {
-            this.comments = this.comments.filter((p) => p.id !== value);
-        },
-        async getCommentsForPost() {
-            try {
-                let response = await fetch(
-                    `https://jsonplaceholder.typicode.com/comments?postId=${this.postId}`
-                );
-                if (!response.ok) {
-                    throw new Error("Errorrrrr");
-                } else {
-                    this.comments = await response.json();
-                    this.comments.forEach((comment) => {
-                        const currentDate = new Date();
-                        const options = {
-                            dateStyle: "medium",
-                            timeStyle: "short",
-                        };
-                        comment.time = currentDate.toLocaleString(
-                            "ru",
-                            options
-                        );
-                    });
-                    this.dataIsLoaded = true;
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        createComment(newComment) {
-            this.comments.unshift(newComment);
-        },
+        ...mapActions({
+            getAllComments: "comments/getAllComments",
+            createComment: "comments/createComment",
+            removeComment: "comments/removeComment",
+        }),
     },
     mounted() {
-        this.getCommentsForPost();
+        this.getAllComments();
+        this.dataIsLoaded = true;
+    },
+    computed: {
+        ...mapState({
+            comments: (state) => state.comments.comments,
+        }),
+        filterComments() {
+            return this.comments.filter(
+                (element) => element.postId == this.postId
+            );
+        },
     },
 };
 </script>

@@ -58,10 +58,19 @@ export default {
             hideDialog: "post/hideDialog",
             getAllComments: "comments/getAllComments",
         }),
+        async fetchAllData() {
+            await this.getPosts();
+            this.dataFromPosts = true;
+            await this.getAllComments();
+            this.dataFromComments = true;
+
+            if (this.dataFromPosts && this.dataFromComments) {
+                this.dataIsLoaded = true;
+            }
+        },
     },
     mounted() {
-        this.getPosts();
-        this.getAllComments();
+        this.fetchAllData();
     },
     computed: {
         ...mapState({
