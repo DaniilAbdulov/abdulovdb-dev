@@ -80,7 +80,7 @@ export default {
     },
 };
 </script>
-<style>
+<style lang="scss">
 .post {
     display: flex;
     gap: 10px;
@@ -90,44 +90,54 @@ export default {
     box-shadow: 2px 2px 2px 2px black;
     overflow: hidden;
     justify-content: center;
+    &__time {
+        margin-bottom: 10px;
+    }
+    &__content {
+        flex: 0 1 90%;
+        overflow-wrap: break-word;
+    }
+    &__title {
+        font-size: 32px;
+        color: #6eeb83;
+        margin-bottom: 20px;
+        overflow-wrap: break-word;
+    }
+    &__title::first-letter {
+        text-transform: uppercase;
+    }
+    &__body::first-letter {
+        text-transform: uppercase;
+    }
+    &__body {
+        font-style: italic;
+        font-size: 20px;
+        margin-bottom: 20px;
+        overflow-wrap: break-word;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__lnc {
+        display: flex;
+        gap: 10px;
+    }
 }
-.post__time {
-    margin-bottom: 10px;
-}
-.post__content {
-    flex: 0 1 90%;
-    overflow-wrap: break-word;
-}
-.post__title {
-    font-size: 32px;
-    color: #6eeb83;
-    margin-bottom: 20px;
-    overflow-wrap: break-word;
-}
-.post__title::first-letter {
-    text-transform: uppercase;
-}
-.post__body::first-letter {
-    text-transform: uppercase;
-}
-.post__body {
-    font-style: italic;
-    font-size: 20px;
-    margin-bottom: 20px;
-    overflow-wrap: break-word;
-}
-.post__buttons {
-    display: flex;
-    justify-content: space-between;
-}
-.post__lnc {
-    display: flex;
-    gap: 10px;
-}
-
-.post__com {
-}
-.post__delete {
+@media (max-width: 500px) {
+    .post {
+        &__time {
+            margin-bottom: 10px;
+        }
+        &__title {
+            font-size: 28px;
+            margin-bottom: 14px;
+        }
+        &__body {
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+    }
 }
 .like-button {
     font-size: 18px;

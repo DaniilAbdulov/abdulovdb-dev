@@ -1,8 +1,8 @@
 <template>
     <div class="create">
         <form @submit.prevent="createPost">
-            <input type="text" placeholder="Title" v-model="title" />
-            <textarea placeholder="Body" v-model="body"></textarea>
+            <input type="text" placeholder="Title" v-model="title" required />
+            <textarea placeholder="Body" v-model="body" required></textarea>
             <button type="submit">Create</button>
         </form>
     </div>

@@ -8,7 +8,7 @@
         />
 
         <button type="submit" @click="createTask" class="create-button">
-            Add
+            Create
         </button>
     </div>
 </template>
@@ -27,8 +27,10 @@ export default {
                 title: this.title,
                 completed: this.completed,
             };
-            this.$emit("create", newTask);
-            this.title = "";
+            if (newTask.title) {
+                this.$emit("create", newTask);
+                this.title = "";
+            }
         },
     },
     emits: ["create"],
@@ -41,6 +43,12 @@ export default {
     align-items: center;
     padding: 20px 10px;
     gap: 20px;
+}
+@media (max-width: 424px) {
+    .new-task {
+        padding: 15px 10px;
+        gap: 10px;
+    }
 }
 .new-task.search {
     display: none;

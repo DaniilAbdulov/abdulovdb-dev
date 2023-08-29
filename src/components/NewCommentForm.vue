@@ -3,7 +3,12 @@
         <form @submit.prevent="createComment">
             <div class="form__general">
                 <div class="form__author">
-                    <input type="text" placeholder="@email" v-model="email" />
+                    <input
+                        type="text"
+                        placeholder="@email"
+                        v-model="email"
+                        required
+                    />
                 </div>
                 <div>
                     <button type="submit" class="form__button">
@@ -16,6 +21,7 @@
                     type="text"
                     placeholder="Введите комментарий"
                     v-model="body"
+                    required
                 />
             </div>
         </form>
@@ -36,8 +42,11 @@ export default {
                 dateStyle: "medium",
                 timeStyle: "short",
             };
+            const postId = Number(this.$route.params.id); // Получение postId
+
             const newComment = {
                 id: Date.now(),
+                postId: postId, // Добавление postId
                 email: this.email,
                 body: this.body,
                 time: currentDate.toLocaleString("ru", options),

@@ -6,18 +6,12 @@
                     <li class="task">
                         <div class="task__body">
                             <input
-                                type="radio"
+                                type="checkbox"
                                 :id="`task-${task.id}`"
                                 name="tasks-group"
-                                class="task__completed hidden"
-                                :class="{ btnCompleted: task.completed }"
+                                class="task__checkbox"
                                 v-model="task.completed"
                             />
-                            <label
-                                :for="`task-${task.id}`"
-                                class="task__completed-label"
-                                :class="{ btnCompleted: task.completed }"
-                            ></label>
                             <div
                                 class="task__title"
                                 :class="{ completed: task.completed }"
@@ -73,20 +67,22 @@ export default {
         gap: 10px;
         align-items: center;
     }
-    &__completed {
+    &__checkbox {
         flex-shrink: 0;
         width: 25px;
         height: 25px;
-        border: 1px solid black;
-        border-radius: 50%;
         margin-right: 10px;
-        padding: 1px;
+        position: relative;
+        appearance: none;
+        border: 1px solid black;
+        border-radius: 5px;
+        &:checked {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%23none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+        }
     }
-    &__completed.btnCompleted {
-        background-color: #6eeb83;
-        border: 3px solid black;
-    }
-
     &__title {
         overflow-wrap: break-word;
         font-size: 24px;
@@ -112,33 +108,24 @@ export default {
     .task {
         padding: 10px;
         margin-bottom: 5px;
+        border: 2px solid #ccc;
+        border-radius: 20px;
         &__body {
             gap: 5px;
         }
-        &__completed {
+        &__checkbox {
             width: 20px;
             height: 20px;
             margin-right: 5px;
+            border: 1px solid black;
         }
         &__title {
             font-size: 18px;
-            padding: 0px 5px;
         }
+
         &__delete {
             font-size: 14px;
         }
     }
-}
-.list-enter-active,
-.list-leave-active {
-    transition: all 0.5s ease;
-}
-.list-enter-from {
-    opacity: 0;
-    transform: translateY(-30px);
-}
-.list-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
 }
 </style>

@@ -2,16 +2,17 @@
     <div class="search">
         <div
             class="search__content"
-            @mouseover="showSearch = true"
-            @mouseleave="showSearch = false"
+            @mouseover="showInput = true"
+            @mouseleave="showInput = false"
         >
             <Transition name="slide-fade">
-                <div class="search__input" v-if="showSearch">
+                <div class="search__input" v-if="showInput">
                     <input
                         type="text"
                         :value="modelValue"
                         @input="updateInput"
                         placeholder="search"
+                        required
                     />
                 </div>
             </Transition>
@@ -26,7 +27,7 @@
 export default {
     data() {
         return {
-            showSearch: false,
+            showInput: false,
             searchQuery: "",
         };
     },
@@ -41,7 +42,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .search {
     border: 1px solid black;
     border-radius: 20px;
@@ -50,22 +51,42 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 5px;
+    &__content {
+        display: flex;
+        align-items: center;
+        transition: all 0.5s ease-in;
+    }
+    &__logo {
+        flex-shrink: 0;
+        margin: 0px 10px;
+        width: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__logo img {
+        object-fit: cover;
+        width: 100%;
+    }
+    &__input input {
+        border-radius: 10px;
+        padding: 2px;
+    }
 }
-.search__content {
-    display: flex;
-    align-items: center;
-    transition: all 0.5s ease-in;
-}
-.search__logo {
-    margin: 0px 10px;
-    width: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.search__logo img {
-    object-fit: cover;
-    width: 100%;
+@media (max-width: 424px) {
+    .search {
+        border: 1px solid black;
+        border-radius: 20px;
+        min-height: 40px;
+        padding: 5px;
+        &__logo {
+            margin: 0px 10px;
+            width: 10px;
+        }
+        &__input input {
+            max-width: 100px;
+        }
+    }
 }
 .slide-fade-enter-active {
     transition: all 0.5s ease-out;
@@ -79,9 +100,5 @@ export default {
 .slide-fade-leave-to {
     transform: translateX(-10px);
     opacity: 0;
-}
-.search__input input {
-    border-radius: 10px;
-    padding: 2px;
 }
 </style>
