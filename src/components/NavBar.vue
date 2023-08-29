@@ -1,34 +1,14 @@
 <template>
-    <div class="navigation-wrapper">
-        <div @click="$router.push('/')" class="logo-wrapper">
-            <span class="stylish">AbdulovDB</span>
-        </div>
-        <ul class="navigation">
-            <li class="parent">
-                <button class="link" @click="$router.push('/about')">
-                    About
-                </button>
-            </li>
-            <li class="parent">
-                <button class="link" @click="$router.push('/gallery')">
-                    Gallery
-                </button>
-            </li>
-            <li class="parent">
-                <button class="link" @click="$router.push('/blog')">
-                    Blog
-                </button>
-            </li>
-            <li class="parent">
-                <button class="link" @click="$router.push('/todo')">
-                    ToDo
-                </button>
-            </li>
-        </ul>
-    </div>
+    <menu-links></menu-links>
 </template>
 <script>
-export default {};
+import MenuLinks from "./MenuLinks.vue";
+
+export default {
+    components: {
+        MenuLinks,
+    },
+};
 </script>
 <style>
 .navigation-wrapper {
@@ -39,7 +19,7 @@ export default {};
     padding: 20px;
     background-color: #222;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
-    color: white;
+    color: rgb(253, 252, 252);
     text-transform: uppercase;
     overflow: hidden;
     width: 100%;
