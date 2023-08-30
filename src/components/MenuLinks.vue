@@ -43,12 +43,10 @@
                     ToDo
                 </button>
             </li>
-            <li class="parent">
-                <button class="burger-menu" @click="burgerActive = true">
-                    <img src="@/assets/burger-menu.svg" alt="" />
-                </button>
-            </li>
         </ul>
+        <button class="burger-menu" @click="toggleBurgerMenu">
+            <img src="@/assets/burger-menu.svg" alt="" />
+        </button>
     </div>
 </template>
 
@@ -59,43 +57,15 @@ export default {
             burgerActive: false,
         };
     },
+    methods: {
+        toggleBurgerMenu() {
+            this.burgerActive = !this.burgerActive; // Переключает значение burgerActive между true и false
+        },
+    },
 };
 </script>
 
-<style>
-.navigation-wrapper-burger {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #222;
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
-    color: rgb(253, 252, 252);
-    text-transform: uppercase;
-    overflow: hidden;
-    width: 100%;
-    margin-bottom: 40px;
-    font-size: 20px;
-}
-.navigation-burger {
-    position: absolute;
-    top: 62.4px;
-    left: 0px;
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    align-items: flex-start;
-    background: #222;
-    padding: 15px;
-    width: 100%;
-}
-
-.link-burger {
-    transition: all 0.3s ease-in-out;
-    color: rgb(253, 252, 252);
-    margin-bottom: 10px;
-}
-
+<style lang="scss">
 .navigation-wrapper {
     position: relative;
     display: flex;
@@ -110,6 +80,44 @@ export default {
     width: 100%;
     margin-bottom: 40px;
     font-size: 20px;
+    height: 60px;
+    &-burger {
+        overflow: visible;
+    }
+}
+@media (max-width: 500px) {
+    .navigation-wrapper {
+        position: fixed;
+        z-index: 100;
+    }
+}
+.navigation {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    &-burger {
+        position: absolute;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        top: 60px;
+        left: 0px;
+        background: #222;
+        width: 100%;
+    }
+}
+.link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in;
+    background: none;
+    color: white;
+    &-burger {
+        transition: all 0.3s ease-in;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
 }
 
 .logo-wrapper {
@@ -119,31 +127,32 @@ export default {
 .stylish {
     font-weight: bold;
 }
-.navigation {
-    display: flex;
-    list-style-type: none;
-    align-items: center;
-}
 
 .parent {
     padding: 0 10px;
     cursor: pointer;
-}
-.link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
-    background: none;
-    color: white;
+
+    display: inline-block;
 }
 
 .burger-menu {
+    display: none;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
     max-width: 30px;
+}
+@media (max-width: 500px) {
+    .parent {
+        display: none;
+    }
+    .burger-menu {
+        display: block;
+    }
+    .navigation-burger .parent {
+        display: block;
+    }
 }
 .burger-menu img {
     width: 100%;
