@@ -1,29 +1,45 @@
 <template>
     <div
         class="navigation-wrapper"
-        :class="{ 'navigation-wrapper-active': burgerActive }"
+        :class="{ 'navigation-wrapper-burger': burgerActive }"
     >
         <div @click="$router.push('/')" class="logo-wrapper">
             <span class="stylish">AbdulovDB</span>
         </div>
-        <ul class="navigation">
+        <ul class="navigation" :class="{ 'navigation-burger': burgerActive }">
             <li class="parent">
-                <button class="link" @click="$router.push('/about')">
+                <button
+                    class="link"
+                    :class="{ 'link-burger': burgerActive }"
+                    @click="$router.push('/about')"
+                >
                     About
                 </button>
             </li>
             <li class="parent">
-                <button class="link" @click="$router.push('/gallery')">
+                <button
+                    class="link"
+                    :class="{ 'link-burger': burgerActive }"
+                    @click="$router.push('/gallery')"
+                >
                     Gallery
                 </button>
             </li>
             <li class="parent">
-                <button class="link" @click="$router.push('/blog')">
+                <button
+                    class="link"
+                    :class="{ 'link-burger': burgerActive }"
+                    @click="$router.push('/blog')"
+                >
                     Blog
                 </button>
             </li>
             <li class="parent">
-                <button class="link" @click="$router.push('/todo')">
+                <button
+                    class="link"
+                    :class="{ 'link-burger': burgerActive }"
+                    @click="$router.push('/todo')"
+                >
                     ToDo
                 </button>
             </li>
@@ -47,7 +63,7 @@ export default {
 </script>
 
 <style>
-.navigation-wrapper {
+.navigation-wrapper-burger {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,14 +77,7 @@ export default {
     margin-bottom: 40px;
     font-size: 20px;
 }
-.logo-wrapper {
-    display: flex;
-    cursor: pointer;
-}
-.stylish {
-    font-weight: bold;
-}
-.navigation {
+.navigation-burger {
     position: absolute;
     top: 62.4px;
     left: 0px;
@@ -81,25 +90,13 @@ export default {
     width: 100%;
 }
 
-.parent {
-    padding: 0 10px;
-    cursor: pointer;
-}
-.link {
+.link-burger {
     transition: all 0.3s ease-in-out;
     color: rgb(253, 252, 252);
     margin-bottom: 10px;
 }
 
-.burger-menu {
-    max-width: 30px;
-}
-.burger-menu img {
-    width: 100%;
-    object-fit: cover;
-}
-
-/* .navigation-wrapper {
+.navigation-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -114,7 +111,7 @@ export default {
     margin-bottom: 40px;
     font-size: 20px;
 }
-/*
+
 .logo-wrapper {
     display: flex;
     cursor: pointer;
@@ -142,10 +139,14 @@ export default {
 }
 
 .burger-menu {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     max-width: 30px;
 }
 .burger-menu img {
     width: 100%;
     object-fit: cover;
-} */
+}
 </style>
