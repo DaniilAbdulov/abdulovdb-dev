@@ -29,7 +29,7 @@ export default {};
 .general-page {
     min-height: 100vh;
     width: 100%;
-
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +39,7 @@ export default {};
 }
 .general__title h1,
 h2 {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 .general__body {
 }

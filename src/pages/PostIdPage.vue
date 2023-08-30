@@ -1,6 +1,6 @@
 <template>
     <loading-block v-if="!dataIsLoaded"></loading-block>
-    <div>
+    <div class="post-id-page">
         <router-link class="routerLink" to="/blog"
             ><back-button></back-button
         ></router-link>
@@ -60,6 +60,13 @@ export default {
 };
 </script>
 <style scoped>
+.post-id-page {
+}
+@media (max-width: 500px) {
+    .post-id-page {
+        margin-top: 80px;
+    }
+}
 .empty-list {
     margin-top: 20px;
     position: relative;

@@ -92,6 +92,11 @@ export default {
 <style>
 .blog {
 }
+@media (max-width: 500px) {
+    .blog {
+        margin-top: 80px;
+    }
+}
 .blog__content {
 }
 .blog__wrapper {

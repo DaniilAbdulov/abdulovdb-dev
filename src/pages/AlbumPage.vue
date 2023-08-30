@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="album__page">
         <router-link class="routerLink" to="/gallery"
             ><back-button></back-button
         ></router-link>
@@ -76,8 +76,7 @@ export default {
                     this.photos.forEach((photo) => {
                         photo.like = Math.floor(Math.random() * 10);
                     });
-                    // console.log(response);
-                    // this.dataIsLoaded = true;
+                    this.dataIsLoaded = true;
                 }
             } catch (error) {
                 console.log(error);
@@ -91,6 +90,13 @@ export default {
 </script>
 
 <style scoped>
+.album__page {
+}
+@media (max-width: 500px) {
+    .album__page {
+        margin-top: 80px;
+    }
+}
 .like-button {
     font-size: 18px;
     transition: all 0.2s;
@@ -130,7 +136,7 @@ export default {
     border-radius: 10px;
     box-shadow: 0px 0px 1px 1px black;
     margin: 20px;
-    max-width: 500px;
+    max-width: 400px;
     transition: all 0.2s ease-in;
     cursor: pointer;
 }

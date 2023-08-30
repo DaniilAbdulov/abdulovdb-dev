@@ -97,6 +97,11 @@ export default {
     flex-direction: column;
     margin-bottom: 20px;
 }
+@media (max-width: 500px) {
+    .general {
+        margin-top: 80px;
+    }
+}
 .general__year {
     font-size: 50px;
     font-weight: bold;

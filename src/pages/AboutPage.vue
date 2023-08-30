@@ -1,5 +1,5 @@
 <template>
-    <div class="about-page">
+    <div class="about">
         <div class="about__content">
             <div class="about__title">
                 <h1>About</h1>
@@ -33,26 +33,50 @@
 <script>
 export default {};
 </script>
-<style scoped>
-.about-page {
+<style scoped lang="scss">
+.about {
     min-height: 100vh;
     width: 100%;
+    &__content {
+    }
+    &__title {
+        font-weight: 700;
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    &__body {
+        font-size: 25px;
+        line-height: 25px;
+        letter-spacing: 1px;
+        padding: 0px 15px;
+    }
+    &__body {
+        p {
+            text-indent: 40px;
+            padding-left: -40px;
+        }
+    }
 }
-.about__content {
-}
-.about__title {
-    font-weight: 700;
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-.about__body {
-    font-size: 25px;
-    line-height: 25px;
-    letter-spacing: 1px;
-    padding: 0px 15px;
-}
-.about__body p {
-    text-indent: 40px;
-    padding-left: -40px;
+@media (max-width: 500px) {
+    .about {
+        margin-top: 80px;
+        &__title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        &__body {
+            font-size: 18px;
+            line-height: 18px;
+            letter-spacing: 1px;
+            padding: 0px 15px;
+        }
+        &__body {
+            p {
+                text-indent: 40px;
+                padding-left: -40px;
+            }
+        }
+    }
 }
 </style>

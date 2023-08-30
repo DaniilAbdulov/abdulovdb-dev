@@ -63,6 +63,18 @@ export default {
 };
 </script>
 <style scoped>
+.sorted-todo {
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px;
+}
+.todo__content {
+}
+@media (max-width: 500px) {
+    .todo__content {
+        margin-top: 80px;
+    }
+}
 .todo__functional {
     display: flex;
     align-items: center;

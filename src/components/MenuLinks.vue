@@ -7,41 +7,15 @@
             <span class="stylish">AbdulovDB</span>
         </div>
         <ul class="navigation" :class="{ 'navigation-burger': burgerActive }">
-            <li class="parent">
-                <button
+            <li class="parent" v-for="(link, index) in links" :key="index">
+                <router-link
+                    :to="link.route"
                     class="link"
                     :class="{ 'link-burger': burgerActive }"
-                    @click="$router.push('/about')"
+                    @click="burgerActive = false"
                 >
-                    About
-                </button>
-            </li>
-            <li class="parent">
-                <button
-                    class="link"
-                    :class="{ 'link-burger': burgerActive }"
-                    @click="$router.push('/gallery')"
-                >
-                    Gallery
-                </button>
-            </li>
-            <li class="parent">
-                <button
-                    class="link"
-                    :class="{ 'link-burger': burgerActive }"
-                    @click="$router.push('/blog')"
-                >
-                    Blog
-                </button>
-            </li>
-            <li class="parent">
-                <button
-                    class="link"
-                    :class="{ 'link-burger': burgerActive }"
-                    @click="$router.push('/todo')"
-                >
-                    ToDo
-                </button>
+                    {{ link.label }}
+                </router-link>
             </li>
         </ul>
         <button class="burger-menu" @click="toggleBurgerMenu">
@@ -55,11 +29,17 @@ export default {
     data() {
         return {
             burgerActive: false,
+            links: [
+                { label: "About", route: "/about" },
+                { label: "Gallery", route: "/gallery" },
+                { label: "Blog", route: "/blog" },
+                { label: "ToDo", route: "/todo" },
+            ],
         };
     },
     methods: {
         toggleBurgerMenu() {
-            this.burgerActive = !this.burgerActive; // Переключает значение burgerActive между true и false
+            this.burgerActive = !this.burgerActive;
         },
     },
 };
@@ -89,12 +69,14 @@ export default {
     .navigation-wrapper {
         position: fixed;
         z-index: 100;
+        top: 0;
     }
 }
 .navigation {
     display: flex;
     list-style-type: none;
     align-items: center;
+    transition: all 0.3s ease-in;
     &-burger {
         position: absolute;
         flex-direction: column;
@@ -113,6 +95,8 @@ export default {
     transition: all 0.3s ease-in;
     background: none;
     color: white;
+    text-decoration: none;
+    text-transform: capitalize;
     &-burger {
         transition: all 0.3s ease-in;
         margin-bottom: 10px;
