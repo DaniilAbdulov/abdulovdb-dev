@@ -1,4 +1,4 @@
-# Quasar App (abdulovdb)
+# Quasar App (quasar-project)
 
 A Quasar Project
 

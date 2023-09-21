@@ -1,16 +1,19 @@
-import { createRouter, createWebHistory } from "vue-router";
-import HomePage from "./pages/HomePage";
 
 const routes = [
   {
-    path: "/",
-    component: HomePage,
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/IndexPage.vue') }
+    ]
   },
-];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  // Always leave this as last one,
+  // but you can also remove it
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/ErrorNotFound.vue')
+  }
+]
 
-export default router;
+export default routes
