@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/core";
-console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
+// console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
 
 const octokit = new Octokit({
   auth: process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
@@ -156,6 +156,7 @@ const actions = {
             name,
             readme,
             updated_at,
+            html_url,
             homepage,
           } = repo;
           return {
@@ -166,6 +167,7 @@ const actions = {
             created_at,
             updated_at,
             description,
+            html_url,
             homepage,
           };
         }
