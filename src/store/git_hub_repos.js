@@ -1,9 +1,10 @@
 import { Octokit } from "@octokit/core";
 
-const octokit = new Octokit({
-  auth: "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",
-});
+console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
 
+const octokit = new Octokit({
+  auth: process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
+});
 const state = {
   user: {},
   reposInfo: {},

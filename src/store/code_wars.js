@@ -14,7 +14,6 @@ const actions = {
       );
       const data = await response.json();
       commit("set_codeWars_data", data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
