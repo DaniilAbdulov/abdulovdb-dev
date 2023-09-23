@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
+    "d3": "^7.8.5",
     "dotenv": "^16.3.1",
     "dotenv-webpack": "^8.0.1",
     "octokit": "^3.1.0",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
+    "vue-d3-components": "^1.0.0",
     "vue-router": "^4.0.0",
     "vuex": "^4.0.1"
   },

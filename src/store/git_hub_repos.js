@@ -8,6 +8,7 @@ const state = {
   user: {},
   reposInfo: {},
   starred_repos: {},
+  user_languages: {},
 };
 const mutations = {
   set_user_info(state, data) {
@@ -18,6 +19,9 @@ const mutations = {
   },
   set_starred_repos(state, data) {
     state.starred_repos = data;
+  },
+  set_all_languages(state, data) {
+    state.user_languages = data;
   },
 };
 const actions = {
@@ -75,6 +79,7 @@ const actions = {
         ...repo,
         languages: languagesList[index],
       }));
+      const arrOfAllLanguages = [];
       const shortDataAboutRepos = fullInfoAboutRepos.map((repo) => {
         function changeValuesOfLanguages(val) {
           const sumOfValues = Object.values(val).reduce((a, b) => a + b, 0);
@@ -82,10 +87,12 @@ const actions = {
           const newArr = [];
           for (let i of arr) {
             newArr.push([i[0], ((i[1] / sumOfValues) * 100).toFixed(2) + " %"]);
+            arrOfAllLanguages.push(i);
           }
           return Object.fromEntries(newArr);
         }
         const languagesData = changeValuesOfLanguages(repo.languages);
+
         const {
           created_at,
           description,
@@ -105,6 +112,35 @@ const actions = {
           languagesData,
         };
       });
+      function getDataAboutFavoriteLanguages(langArray) {
+        function sumValues(data) {
+          let total = 0;
+          for (const lang of data) {
+            total += lang[1];
+          }
+          return total;
+        }
+        const totalCount = sumValues(langArray);
+        function mergeAndSumRepeatedKeys(data, totalCount) {
+          const mergedData = {};
+
+          for (const lang of data) {
+            if (mergedData.hasOwnProperty(lang[0])) {
+              mergedData[lang[0]] += lang[1] / totalCount;
+            } else {
+              mergedData[lang[0]] = lang[1] / totalCount;
+            }
+          }
+
+          return mergedData;
+        }
+        const resultObject = mergeAndSumRepeatedKeys(langArray, totalCount);
+        return resultObject;
+      }
+      const listOfAllLanguages =
+        getDataAboutFavoriteLanguages(arrOfAllLanguages);
+      console.log(listOfAllLanguages);
+      commit("set_all_languages", listOfAllLanguages);
       commit("set_repos_info", shortDataAboutRepos);
     } catch (error) {
       console.log(error);

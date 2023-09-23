@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md">
-    <h4 style="text-align: center; margin-bottom: 20px">
+  <div>
+    <h4 style="text-align: center; margin-bottom: 20px; margin-top: 0px">
       My favorite repositories
     </h4>
     <div class="q-gutter-md">
@@ -12,7 +12,7 @@
         animated
         control-color="white"
         navigation
-        padding="15px"
+        padding
         arrows
         height="100%"
         class="bg-primary text-white shadow-1 rounded-borders"

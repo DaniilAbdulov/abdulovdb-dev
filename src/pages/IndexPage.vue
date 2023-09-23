@@ -1,8 +1,11 @@
 <template>
   <div class="git">
+    <h1>GitHub</h1>
     <div class="git__general">
       <GitHubUserInfo />
-      <GitHubStarredRepos />
+      <div class="git__general-item">
+        <GitHubStarredRepos />
+      </div>
     </div>
     <div class="git__body">
       <h3>Info about Repos</h3>
