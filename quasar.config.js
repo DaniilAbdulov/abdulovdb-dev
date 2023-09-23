@@ -18,9 +18,8 @@ module.exports = configure(function (/* ctx */) {
         node: "node16",
       },
       env: {
-        VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN: JSON.stringify(
-          process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN
-        ),
+        VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN:
+          process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
       },
       vueRouterMode: "hash",
     },
