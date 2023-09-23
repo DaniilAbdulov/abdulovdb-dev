@@ -2,7 +2,9 @@
   <div>Hello</div>
   <h1>GitHub</h1>
   <div>{{ user }}</div>
-  <p>Info about Repos</p>
+  <h2>StarredRepos</h2>
+  <div>{{ starred_repos }}</div>
+  <h3>Info about Repos</h3>
   <div>{{ reposInfo }}</div>
   <h2>LeetCode</h2>
   <div>{{ leetCodeData }}</div>
@@ -20,6 +22,7 @@ export default defineComponent({
     ...mapState("git_hub_repos", {
       user: (state) => state.user,
       reposInfo: (state) => state.reposInfo,
+      starred_repos: (state) => state.starred_repos,
     }),
     ...mapState("leet_code", {
       leetCodeData: (state) => state.leetCodeData,
@@ -29,13 +32,18 @@ export default defineComponent({
     }),
   },
   methods: {
-    ...mapActions("git_hub_repos", ["getInfoAboutUser", "getInfoAboutRepos"]),
+    ...mapActions("git_hub_repos", [
+      "getInfoAboutUser",
+      "getInfoAboutRepos",
+      "getStarredReposReadmes",
+    ]),
     ...mapActions("leet_code", ["getInfoFromleetCode"]),
     ...mapActions("code_wars", ["getInfoFromCodeWars"]),
   },
   mounted() {
     this.getInfoAboutUser();
     this.getInfoAboutRepos();
+    this.getStarredReposReadmes();
     this.getInfoFromleetCode();
     this.getInfoFromCodeWars();
   },
