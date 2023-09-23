@@ -1,5 +1,4 @@
 import { Octokit } from "@octokit/core";
-
 console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
 
 const octokit = new Octokit({
