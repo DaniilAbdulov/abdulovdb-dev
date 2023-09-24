@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <div class="row justify-center q-gutter-sm">
+    <div class="row justify-center q-gutter-sm" v-if="reposInfo.length > 0">
       <q-intersection
         v-for="(repo, index) in reposInfo"
         :key="repo.id"
@@ -64,21 +64,43 @@
         </q-card>
       </q-intersection>
     </div>
+    <div v-else>Loading..</div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
 export default {
   props: {
     reposInfo: {
-      type: Object,
+      type: Array, // Замените тип на Array
       required: true,
     },
   },
   name: "ListOfRepos",
   setup(props) {
-    const expandedStates = ref(props.reposInfo.map(() => false));
+    const expandedStates = ref([]);
+
+    const initializeExpandStates = () => {
+      if (Array.isArray(props.reposInfo)) {
+        expandedStates.value = props.reposInfo.map(() => false);
+      } else {
+        expandedStates.value = [];
+      }
+    };
+
+    // Инициализируйте states после монтирования компонента
+    onMounted(() => {
+      initializeExpandStates();
+    });
+
+    // Отслеживайте изменения в reposInfo и обновляйте состояние expandedStates
+    watch(
+      () => props.reposInfo,
+      () => {
+        initializeExpandStates();
+      }
+    );
 
     function toggleExpanded(index) {
       expandedStates.value[index] = !expandedStates.value[index];
@@ -91,6 +113,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .example-item {
   display: flex;

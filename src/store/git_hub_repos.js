@@ -6,7 +6,7 @@ const octokit = new Octokit({
 });
 const state = {
   user: {},
-  reposInfo: {},
+  reposInfo: [],
   starred_repos: {},
   user_languages: [],
 };
