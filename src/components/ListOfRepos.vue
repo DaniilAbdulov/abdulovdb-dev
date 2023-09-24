@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="row justify-center q-gutter-sm">
       <q-intersection
-        v-for="repo in reposInfo"
+        v-for="(repo, index) in reposInfo"
         :key="repo.id"
         once
         transition="scale"
@@ -42,13 +42,17 @@
                 round
                 flat
                 dense
-                :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-                @click="expanded = !expanded"
+                :icon="
+                  expandedStates[index]
+                    ? 'keyboard_arrow_up'
+                    : 'keyboard_arrow_down'
+                "
+                @click="toggleExpanded(index)"
               />
             </q-card-actions>
 
             <q-slide-transition>
-              <div v-show="expanded">
+              <div v-show="expandedStates[index]">
                 <q-separator />
                 <q-card-section class="text-subtitle2 text-black">
                   <p>Created: {{ repo.shortData.created_at }}</p>
@@ -73,9 +77,16 @@ export default {
     },
   },
   name: "ListOfRepos",
-  setup() {
+  setup(props) {
+    const expandedStates = ref(props.reposInfo.map(() => false));
+
+    function toggleExpanded(index) {
+      expandedStates.value[index] = !expandedStates.value[index];
+    }
+
     return {
-      expanded: ref(false),
+      expandedStates,
+      toggleExpanded,
     };
   },
 };
