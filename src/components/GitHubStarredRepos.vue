@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-card flat bordered style="height: 100%">
     <h4 style="text-align: center; margin-bottom: 20px; margin-top: 0px">
       My favorite repositories
     </h4>
@@ -27,7 +27,7 @@
         </q-carousel-slide>
       </q-carousel>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script>

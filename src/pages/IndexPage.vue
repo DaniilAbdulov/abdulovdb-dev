@@ -1,22 +1,25 @@
 <template>
-  <div class="git">
-    <h1>GitHub</h1>
-    <div class="fit row wrap justify-start items-start content-start">
+  <LeetCode :leetCodeData="leetCodeData" />
+
+  <h2 style="margin: 0px 0px 10px 0px">Codewars</h2>
+  <div>{{ codeWarsData }}</div>
+  <q-card class="git">
+    <h2 style="margin: 0px 0px 10px 0px">GitHub</h2>
+    <div
+      class="fit row wrap justify-center items-start content-start"
+      style="margin-bottom: 10px; padding: 0px 10px; gap: 5px"
+    >
       <div class="" style="overflow: auto; min-height: auto; max-height: auto">
         <GitHubUserInfo />
       </div>
-      <div class="col-grow self-stretch" style="padding: 0px 15px">
+      <div class="col-grow self-stretch">
         <GitHubStarredRepos />
       </div>
     </div>
-    <div class="git__body">
+    <q-card class="git__body" style="height: 700px; overflow: auto">
       <ListOfRepos :reposInfo="reposInfo" />
-    </div>
-  </div>
-  <h2>LeetCode</h2>
-  <div>{{ leetCodeData }}</div>
-  <h3>Codewars</h3>
-  <div>{{ codeWarsData }}</div>
+    </q-card>
+  </q-card>
 </template>
 
 <script>
@@ -24,6 +27,8 @@ import { defineComponent } from "vue";
 import GitHubUserInfo from "components/GitHubUserInfo.vue";
 import GitHubStarredRepos from "components/GitHubStarredRepos.vue";
 import ListOfRepos from "src/components/ListOfRepos.vue";
+
+import LeetCode from "src/components/LeetCode.vue";
 import { mapState, mapActions } from "vuex";
 
 export default defineComponent({
@@ -32,6 +37,7 @@ export default defineComponent({
     GitHubUserInfo,
     GitHubStarredRepos,
     ListOfRepos,
+    LeetCode,
   },
   computed: {
     ...mapState("git_hub_repos", {
@@ -56,3 +62,8 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.git__body {
+  scrollbar-width: 1px;
+}
+</style>

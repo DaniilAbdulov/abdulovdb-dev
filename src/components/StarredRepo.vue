@@ -38,9 +38,9 @@
       <q-slide-transition>
         <div v-show="expanded">
           <q-separator />
-          <q-card-section class="text-subtitle2 text-black">
-            <p>Created: {{ repo.created_at }}</p>
-            <p>Last update: {{ repo.updated_at }}</p>
+          <q-card-section class="text-body2 text-black">
+            <div class="q-m-xs">Created: {{ repo.created_at }}</div>
+            <div class="q-m-xs">Last update: {{ repo.updated_at }}</div>
           </q-card-section>
         </div>
       </q-slide-transition>

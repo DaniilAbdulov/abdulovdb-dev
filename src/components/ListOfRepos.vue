@@ -1,31 +1,34 @@
 <template>
-  <div class="q-pa-md">
-    <div class="row justify-center q-gutter-sm" v-if="reposInfo.length > 0">
-      <q-intersection
+  <h4 style="text-align: center; margin-bottom: 0px; margin-top: 0px">
+    List of repositories
+  </h4>
+
+  <q-card class="q-pa-md">
+    <div class="q-gutter-md" v-if="reposInfo.length > 0">
+      <q-card
         v-for="(repo, index) in reposInfo"
         :key="repo.id"
-        once
-        transition="scale"
         class="example-item"
       >
         <q-card flat bordered class="q-ma-sm">
           <q-card-section>
-            <div class="text-h4 text-green-9">{{ repo.shortData.name }}</div>
+            <div class="text-h4 text-blue-9">{{ repo.shortData.name }}</div>
             <div class="text-h6 text-black">
               {{ repo.shortData.description }}
+            </div>
+
+            <div
+              class="text-body2 text-grey"
+              v-for="lang in repo.languagesData"
+              :key="lang.language"
+            >
+              <div>{{ lang.language }} : {{ lang.percentage }}</div>
             </div>
             <a
               class="text-subtitle1 text-black"
               :href="repo.shortData.homepage"
               >{{ repo.shortData.homepage }}</a
             >
-            <div
-              class="text-h6"
-              v-for="lang in repo.languagesData"
-              :key="lang.language"
-            >
-              {{ lang.language }} : {{ lang.percentage }}
-            </div>
             <q-card-actions>
               <q-btn
                 flat
@@ -54,18 +57,22 @@
             <q-slide-transition>
               <div v-show="expandedStates[index]">
                 <q-separator />
-                <q-card-section class="text-subtitle2 text-black">
-                  <p>Created: {{ repo.shortData.created_at }}</p>
-                  <p>Last update: {{ repo.shortData.updated_at }}</p>
+                <q-card-section class="text-body2">
+                  <div class="q-m-xs">
+                    Created: {{ repo.shortData.created_at }}
+                  </div>
+                  <div class="q-m-xs">
+                    Last update: {{ repo.shortData.updated_at }}
+                  </div>
                 </q-card-section>
               </div>
             </q-slide-transition>
           </q-card-section>
         </q-card>
-      </q-intersection>
+      </q-card>
     </div>
     <div v-else>Loading..</div>
-  </div>
+  </q-card>
 </template>
 
 <script>
@@ -113,9 +120,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.example-item {
-  display: flex;
-}
-</style>
