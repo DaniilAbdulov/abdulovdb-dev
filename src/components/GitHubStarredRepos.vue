@@ -3,7 +3,7 @@
     <h4 style="text-align: center; margin-bottom: 20px; margin-top: 0px">
       My favorite repositories
     </h4>
-    <div class="q-gutter-md">
+    <div class="q-gutter-lg">
       <q-carousel
         v-model="slide"
         transition-prev="scale"

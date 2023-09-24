@@ -30,8 +30,7 @@
       </q-card-section>
     </q-card-section>
     <div>
-      {{ user_languages }}
-      <LinearDataAboutLanguages />
+      <LinearDataAboutLanguages :user_languages="user_languages" />
     </div>
     <q-card-section horizontal>
       <q-card-section>

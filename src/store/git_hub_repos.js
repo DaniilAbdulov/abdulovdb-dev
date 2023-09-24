@@ -8,7 +8,7 @@ const state = {
   user: {},
   reposInfo: {},
   starred_repos: {},
-  user_languages: {},
+  user_languages: [],
 };
 const mutations = {
   set_user_info(state, data) {
@@ -56,90 +56,87 @@ const actions = {
         },
       });
       const infoAboutRepos = response.data;
-      const languagesPromises = infoAboutRepos.map(async (repo) => {
-        try {
-          const languagesResponse = await octokit.request(
-            "GET /repos/{owner}/{repo}/languages",
-            {
-              owner: repo.owner.login,
-              repo: repo.name,
-              headers: {
-                "X-GitHub-Api-Version": "2022-11-28",
-              },
-            }
-          );
-          return languagesResponse.data;
-        } catch (error) {
-          console.log(error);
-          return null;
-        }
-      });
-      const languagesList = await Promise.all(languagesPromises);
-      const fullInfoAboutRepos = infoAboutRepos.map((repo, index) => ({
-        ...repo,
-        languages: languagesList[index],
-      }));
-      const arrOfAllLanguages = [];
-      const shortDataAboutRepos = fullInfoAboutRepos.map((repo) => {
-        function changeValuesOfLanguages(val) {
-          const sumOfValues = Object.values(val).reduce((a, b) => a + b, 0);
-          const arr = Object.entries(val);
-          const newArr = [];
-          for (let i of arr) {
-            newArr.push([i[0], ((i[1] / sumOfValues) * 100).toFixed(2) + " %"]);
-            arrOfAllLanguages.push(i);
+      const languagesList = await Promise.all(
+        infoAboutRepos.map(async (repo) => {
+          try {
+            const languagesResponse = await octokit.request(
+              "GET /repos/{owner}/{repo}/languages",
+              {
+                owner: repo.owner.login,
+                repo: repo.name,
+                headers: {
+                  "X-GitHub-Api-Version": "2022-11-28",
+                },
+              }
+            );
+            return languagesResponse.data;
+          } catch (error) {
+            console.log(error);
+            return null;
           }
-          return Object.fromEntries(newArr);
+        })
+      );
+
+      const languagesMap = new Map();
+      const shortDataAboutRepos = infoAboutRepos.map((repo, index) => {
+        const languages = languagesList[index];
+        const totalVal = Object.values(languages).reduce((a, b) => a + b, 0);
+
+        const languagesArr = [];
+        for (const lang in languages) {
+          const val = languages[lang] / totalVal;
+          const percentage = (val * 100).toFixed(2) + " %";
+
+          languagesArr.push({ language: lang, percentage });
+
+          if (languagesMap.has(lang)) {
+            languagesMap.set(lang, languagesMap.get(lang) + val);
+          } else {
+            languagesMap.set(lang, val);
+          }
         }
-        const languagesData = changeValuesOfLanguages(repo.languages);
 
         const {
           created_at,
-          description,
+          homepage,
+          html_url,
+          id,
           name,
           updated_at,
-          html_url,
-          homepage,
+          description,
         } = repo;
 
-        return {
+        const shortData = {
           created_at,
-          description,
+          homepage,
+          html_url,
+          id,
           name,
           updated_at,
-          html_url,
-          homepage,
-          languagesData,
+          description,
+        };
+
+        return {
+          shortData,
+          languagesData: languagesArr,
         };
       });
-      function getDataAboutFavoriteLanguages(langArray) {
-        function sumValues(data) {
-          let total = 0;
-          for (const lang of data) {
-            total += lang[1];
-          }
-          return total;
-        }
-        const totalCount = sumValues(langArray);
-        function mergeAndSumRepeatedKeys(data, totalCount) {
-          const mergedData = {};
 
-          for (const lang of data) {
-            if (mergedData.hasOwnProperty(lang[0])) {
-              mergedData[lang[0]] += lang[1] / totalCount;
-            } else {
-              mergedData[lang[0]] = lang[1] / totalCount;
-            }
-          }
+      const getDataAboutFavoriteLanguages = () => {
+        const totalCount = Array.from(languagesMap.values()).reduce(
+          (a, b) => a + b,
+          0
+        );
+        const resultArray = [];
 
-          return mergedData;
+        for (const [lang, val] of languagesMap.entries()) {
+          const percentage = +(val / totalCount).toFixed(3);
+          resultArray.push([lang, percentage]);
         }
-        const resultObject = mergeAndSumRepeatedKeys(langArray, totalCount);
-        return resultObject;
-      }
-      const listOfAllLanguages =
-        getDataAboutFavoriteLanguages(arrOfAllLanguages);
-      console.log(listOfAllLanguages);
+        return resultArray;
+      };
+
+      const listOfAllLanguages = getDataAboutFavoriteLanguages();
       commit("set_all_languages", listOfAllLanguages);
       commit("set_repos_info", shortDataAboutRepos);
     } catch (error) {

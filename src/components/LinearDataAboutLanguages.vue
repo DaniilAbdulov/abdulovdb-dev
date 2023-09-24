@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <div class="statistic">
-      <div
-        class="statistic__container"
-        v-for="lang in languages"
-        :key="lang[0]"
-      >
-        <div class="statistic__item">{lang}</div>
-      </div>
+  <div class="q-pa-md">
+    <label class="text-h6">Stack</label>
+    <div v-for="(langData, index) in user_languages" :key="index">
+      <label>{{ langData[0] }}</label>
+      <q-linear-progress
+        :value="langData[1]"
+        :color="getLanguageColor(langData[0])"
+      />
     </div>
   </div>
 </template>
@@ -15,17 +14,30 @@
 <script>
 export default {
   name: "LinearDataAboutLanguages",
-  data() {
-    return {
-      languages: {
-        JavaScript: 0.21659379171726728,
-        Vue: 0.12083128670742843,
-        SCSS: 0.1687208261638647,
-        HTML: 0.3145093974030201,
-        CSS: 0.1740772102806414,
-        PHP: 0.005267487727778163,
-      },
-    };
+  props: {
+    user_languages: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  methods: {
+    getLanguageColor(languageName) {
+      const colorOfTechnoligies = {
+        JavaScript: "yellow-6",
+        Python: "indigo",
+        PHP: "blue",
+        HTML: "orange",
+        CSS: "blue",
+        SCSS: "pink-4",
+        Vue: "light-green",
+        React: "dodgerblue",
+      };
+      if (Object.keys(colorOfTechnoligies).includes(languageName)) {
+        return colorOfTechnoligies[languageName];
+      } else {
+        return "black";
+      }
+    },
   },
 };
 </script>

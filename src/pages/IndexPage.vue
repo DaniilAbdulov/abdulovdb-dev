@@ -1,15 +1,16 @@
 <template>
   <div class="git">
     <h1>GitHub</h1>
-    <div class="git__general">
-      <GitHubUserInfo />
-      <div class="git__general-item">
+    <div class="fit row wrap justify-start items-start content-start">
+      <div class="" style="overflow: auto; min-height: auto; max-height: auto">
+        <GitHubUserInfo />
+      </div>
+      <div class="col-grow self-stretch" style="padding: 0px 15px">
         <GitHubStarredRepos />
       </div>
     </div>
     <div class="git__body">
-      <h3>Info about Repos</h3>
-      <div>{{ reposInfo }}</div>
+      <ListOfRepos :reposInfo="reposInfo" />
     </div>
   </div>
   <h2>LeetCode</h2>
@@ -22,6 +23,7 @@
 import { defineComponent } from "vue";
 import GitHubUserInfo from "components/GitHubUserInfo.vue";
 import GitHubStarredRepos from "components/GitHubStarredRepos.vue";
+import ListOfRepos from "src/components/ListOfRepos.vue";
 import { mapState, mapActions } from "vuex";
 
 export default defineComponent({
@@ -29,6 +31,7 @@ export default defineComponent({
   components: {
     GitHubUserInfo,
     GitHubStarredRepos,
+    ListOfRepos,
   },
   computed: {
     ...mapState("git_hub_repos", {

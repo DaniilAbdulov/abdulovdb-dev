@@ -1,27 +1,4 @@
-// app global css in SCSS form
-// html,
-// body {
-//   font-size: 10px;
-// }
-// body {
-//   padding: 10px 15px;
-// }
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.git {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-
-  &__general {
-    display: flex;
-    // justify-content: space-between;
-    align-items: flex-start;
-    &-item {
-      margin-left: 35px;
-      flex: 1 1 auto;
-    }
-  }
+.custom-container {
+  max-width: 1200px;
+  margin: auto;
 }
