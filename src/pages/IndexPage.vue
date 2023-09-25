@@ -1,8 +1,9 @@
 <template>
-  <LeetCode :leetCodeData="leetCodeData" />
+  <div class="lnc">
+    <LeetCode :leetCodeData="leetCodeData" />
 
-  <h2 style="margin: 0px 0px 10px 0px">Codewars</h2>
-  <div>{{ codeWarsData }}</div>
+    <CodeWars :codeWarsData="codeWarsData" />
+  </div>
   <q-card class="git">
     <h2 style="margin: 0px 0px 10px 0px">GitHub</h2>
     <div
@@ -27,7 +28,7 @@ import { defineComponent } from "vue";
 import GitHubUserInfo from "components/GitHubUserInfo.vue";
 import GitHubStarredRepos from "components/GitHubStarredRepos.vue";
 import ListOfRepos from "src/components/ListOfRepos.vue";
-
+import CodeWars from "src/components/CodeWars.vue";
 import LeetCode from "src/components/LeetCode.vue";
 import { mapState, mapActions } from "vuex";
 
@@ -38,6 +39,7 @@ export default defineComponent({
     GitHubStarredRepos,
     ListOfRepos,
     LeetCode,
+    CodeWars,
   },
   computed: {
     ...mapState("git_hub_repos", {
@@ -65,5 +67,8 @@ export default defineComponent({
 <style>
 .git__body {
   scrollbar-width: 1px;
+}
+.lnc {
+  display: flex;
 }
 </style>

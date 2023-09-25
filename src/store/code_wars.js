@@ -13,7 +13,22 @@ const actions = {
         "https://www.codewars.com/api/v1/users/abdulovdb"
       );
       const data = await response.json();
-      commit("set_codeWars_data", data);
+      const { honor, codeChallenges, ranks } = data;
+      const { totalCompleted } = codeChallenges;
+      const { overall, languages } = ranks;
+
+      const codeWarsObject = {
+        honor,
+        totalCompleted,
+        overall,
+        languages: Object.entries(languages).map(([key, value]) => [
+          key,
+          value,
+        ]),
+      };
+
+      console.log(codeWarsObject);
+      commit("set_codeWars_data", codeWarsObject);
     } catch (error) {
       console.log(error);
     }

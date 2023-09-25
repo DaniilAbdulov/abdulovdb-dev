@@ -9,11 +9,13 @@
           show-value
           font-size="25px"
           class="text-red q-ma-md"
-          :value="
-            (
-              (leetCodeData.totalSolved / leetCodeData.totalQuestions) *
-              100
-            ).toFixed(2)
+          :modelValue="
+            parseFloat(
+              (
+                (leetCodeData.totalSolved / leetCodeData.totalQuestions) *
+                100
+              ).toFixed(2)
+            )
           "
           size="160px"
           :thickness="0.1"
@@ -102,12 +104,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-
-  setup() {
-    return {
-      value: 81,
-    };
   },
 };
 </script>
