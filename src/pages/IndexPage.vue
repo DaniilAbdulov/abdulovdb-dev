@@ -1,14 +1,20 @@
 <template>
-  <div class="lnc">
-    <LeetCode :leetCodeData="leetCodeData" />
-
-    <CodeWars :codeWarsData="codeWarsData" />
+  <div
+    class="fit row wrap justify-start items-stretch content-stretch"
+    style="margin-bottom: 20px; gap: 10px"
+  >
+    <div class="col-grow">
+      <LeetCode :leetCodeData="leetCodeData" />
+    </div>
+    <div>
+      <CodeWars :codeWarsData="codeWarsData" />
+    </div>
   </div>
+  <h2 style="margin: 0px 0px 10px 0px">GitHub</h2>
   <q-card class="git">
-    <h2 style="margin: 0px 0px 10px 0px">GitHub</h2>
     <div
       class="fit row wrap justify-center items-start content-start"
-      style="margin-bottom: 10px; padding: 0px 10px; gap: 5px"
+      style="margin-bottom: 10px; padding: 20px 10px; gap: 5px"
     >
       <div class="" style="overflow: auto; min-height: auto; max-height: auto">
         <GitHubUserInfo />
@@ -64,11 +70,4 @@ export default defineComponent({
   },
 });
 </script>
-<style>
-.git__body {
-  scrollbar-width: 1px;
-}
-.lnc {
-  display: flex;
-}
-</style>
+<style></style>

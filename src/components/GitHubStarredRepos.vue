@@ -3,7 +3,7 @@
     <h4 style="text-align: center; margin-bottom: 20px; margin-top: 0px">
       My favorite repositories
     </h4>
-    <div class="q-gutter-lg">
+    <div class="q-gutter-lg" v-if="starred_repos.length > 0">
       <q-carousel
         v-model="slide"
         transition-prev="scale"
@@ -27,6 +27,7 @@
         </q-carousel-slide>
       </q-carousel>
     </div>
+    <div v-else>Loading....</div>
   </q-card>
 </template>
 

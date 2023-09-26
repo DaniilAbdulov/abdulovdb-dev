@@ -9,27 +9,38 @@
       codeWarsData.honor
     "
   >
-    <div class="codewars__overal overal">
-      <div class="overal__title ttl">Progress:</div>
-      <div class="overal__rank rank">
-        Rank:
-        <div
-          class="kyu"
-          :style="
-            'border: 2px solid ' +
-            codeWarsData.overall.color +
-            '; color: ' +
-            codeWarsData.overall.color +
-            ';'
-          "
-        >
-          {{ codeWarsData.overall.name }}
-        </div>
-      </div>
-      <div class="overal__honor">Honor: {{ codeWarsData.honor }}</div>
-      <div class="overal__tc">
-        Total completed: {{ codeWarsData.totalCompleted }}
-      </div>
+    <div class="q-pa-md" style="max-width: 250px">
+      <q-list bordered padding>
+        <q-item-label header style="color: #ffffff">Progress:</q-item-label>
+
+        <q-item>
+          <q-item-section>
+            <q-item-section style="color: #b0b0b0">Rank:</q-item-section>
+          </q-item-section>
+          <q-item-section
+            :style="' color: ' + codeWarsData.overall.color + '; padding:2px;'"
+            >{{ codeWarsData.overall.name }}</q-item-section
+          >
+        </q-item>
+        <q-item>
+          <q-item-section>
+            <q-item-section style="color: #b0b0b0">Honor:</q-item-section>
+          </q-item-section>
+          <q-item-section style="color: #ffffff">{{
+            codeWarsData.honor
+          }}</q-item-section>
+        </q-item>
+        <q-item>
+          <q-item-section>
+            <q-item-section style="color: #b0b0b0"
+              >Total completed:</q-item-section
+            >
+          </q-item-section>
+          <q-item-section style="color: #ffffff">{{
+            codeWarsData.totalCompleted
+          }}</q-item-section>
+        </q-item>
+      </q-list>
     </div>
 
     <div class="codewars__image">
@@ -38,32 +49,23 @@
         alt=""
       />
     </div>
-    <div class="codewars__languages cd-lang">
-      <div class="cd-lang__title ttl">Languages:</div>
-      <ul
-        class="cd-lang__list"
-        v-for="(lang, index) in codeWarsData.languages"
-        :key="index"
-      >
-        <li class="cd-lang__item item">
-          <div class="item__rank rank">
-            {{ lang[0] }}
-            <div
-              class="kyu"
-              :style="
-                'border: 2px solid ' +
-                lang[1].color +
-                '; color: ' +
-                lang[1].color +
-                ';'
-              "
-            >
-              {{ lang[1].name }}
-            </div>
-          </div>
-          <div class="item__score">/ Score: {{ lang[1].score }}</div>
-        </li>
-      </ul>
+    <div class="q-pa-md" style="max-width: 300px">
+      <q-list bordered padding>
+        <q-item-label header style="color: #ffffff">Languages:</q-item-label>
+        <q-item v-for="(lang, index) in codeWarsData.languages" :key="index">
+          <q-item-section>
+            <q-item-section style="color: #b0b0b0">{{
+              lang[0]
+            }}</q-item-section>
+          </q-item-section>
+          <q-item-section :style="'color: ' + lang[1].color + ';'"
+            >{{ lang[1].name }}
+          </q-item-section>
+          <q-item-section style="color: #ffffff"
+            >/ Score: {{ lang[1].score }}
+          </q-item-section>
+        </q-item>
+      </q-list>
     </div>
   </div>
 </template>
@@ -87,18 +89,23 @@ export default {
 
 <style lang="scss" scoped>
 .codewars {
-  max-width: 70%;
-  margin: 0 auto;
+  // max-width: 70%;
+  // margin: 0 auto;
+  background: #222327;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: $primary;
+  // justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 6px, rgba(0, 0, 0, 0.02) 0px 4px 8px,
+    rgba(0, 0, 0, 0.02) 0px 6px 12px;
+  padding: 10px;
   &__overal {
   }
   &__languages {
   }
   &__image {
-    max-width: 200px;
+    padding: 16px 0px;
+    max-width: 120px;
 
     img {
       width: 100%;
@@ -106,44 +113,14 @@ export default {
     }
   }
 }
-.rank {
-  display: flex;
-  align-items: center;
+
+.q-item__section--main {
+  flex: 0 1 auto;
 }
-.overal {
-  &__title {
-  }
-  &__rank {
-  }
-  &__honor {
-  }
-  &__tc {
-  }
+.q-item {
+  margin-bottom: -15px;
 }
-.ttl {
-  font-size: 20px;
-}
-.kyu {
-  margin-left: 5px;
-  padding: 2px;
-}
-.cd-lang {
-  &__title {
-  }
-  &__list {
-  }
-  &__item {
-  }
-}
-.item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  &__title {
-  }
-  &__kyu {
-  }
-  &__score {
-  }
+.q-item__label--header {
+  margin-bottom: -15px;
 }
 </style>
