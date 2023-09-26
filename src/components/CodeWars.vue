@@ -9,7 +9,7 @@
       codeWarsData.honor
     "
   >
-    <div class="q-pa-md" style="max-width: 250px">
+    <div class="q-pa-md" style="max-width: 350px">
       <q-list bordered padding>
         <q-item-label header style="color: #ffffff">Progress:</q-item-label>
 
@@ -106,7 +106,7 @@ export default {
   }
   &__image {
     padding: 16px 0px;
-    max-width: 120px;
+    max-width: 100px;
 
     img {
       width: 100%;

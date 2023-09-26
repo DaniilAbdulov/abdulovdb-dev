@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fit row wrap justify-center items-start content-start"
+    class="fit row wrap items-start content-start"
     style="margin-bottom: 20px; gap: 10px"
   >
     <div class="col-grow">
