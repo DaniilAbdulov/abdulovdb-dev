@@ -1,7 +1,7 @@
 <template>
-  <div
+  <q-card
     class="fit row wrap items-start content-start"
-    style="margin-bottom: 20px; gap: 10px"
+    style="margin-bottom: 20px; gap: 10px; padding: 10px"
   >
     <div class="col-grow">
       <LeetCode :leetCodeData="leetCodeData" />
@@ -9,7 +9,7 @@
     <div>
       <CodeWars :codeWarsData="codeWarsData" />
     </div>
-  </div>
+  </q-card>
   <h2 style="margin: 0px 0px 10px 0px">GitHub</h2>
   <q-card class="git">
     <div

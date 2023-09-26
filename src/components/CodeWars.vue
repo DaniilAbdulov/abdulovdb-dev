@@ -1,7 +1,8 @@
 <template>
   <h2 style="margin: 0px 0px 10px 0px">CodeWars</h2>
   <div
-    class="codewars"
+    class="q-pa-md flex align-start"
+    style="background: #242424; border-radius: 5px"
     v-if="
       codeWarsData &&
       codeWarsData.overall &&
@@ -10,7 +11,7 @@
     "
   >
     <div class="q-pa-md" style="max-width: 350px">
-      <q-list bordered padding>
+      <q-list padding>
         <q-item-label header style="color: #ffffff">Progress:</q-item-label>
 
         <q-item>
@@ -50,7 +51,7 @@
       />
     </div>
     <div class="q-pa-md" style="max-width: 300px">
-      <q-list bordered padding>
+      <q-list padding>
         <q-item-label header style="color: #ffffff">Languages:</q-item-label>
         <q-item v-for="(lang, index) in codeWarsData.languages" :key="index">
           <q-item-section>
