@@ -43,6 +43,7 @@ const actions = {
         created_at,
         updated_at,
       };
+
       commit("set_user_info", data);
     } catch (error) {
       console.log(error);
@@ -138,7 +139,9 @@ const actions = {
 
       const listOfAllLanguages = getDataAboutFavoriteLanguages();
       commit("set_all_languages", listOfAllLanguages);
-      commit("set_repos_info", shortDataAboutRepos);
+      setTimeout(() => {
+        commit("set_repos_info", shortDataAboutRepos);
+      }, 10000);
     } catch (error) {
       console.log(error);
     }
@@ -205,7 +208,9 @@ const actions = {
           };
         }
       );
+
       commit("set_starred_repos", filteredStarredReposWithReadmes);
+
       return filteredStarredReposWithReadmes;
     } catch (error) {
       console.error("Error fetching starred repos:", error);

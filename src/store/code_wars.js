@@ -28,6 +28,7 @@ const actions = {
       };
 
       console.log(codeWarsObject);
+
       commit("set_codeWars_data", codeWarsObject);
     } catch (error) {
       console.log(error);

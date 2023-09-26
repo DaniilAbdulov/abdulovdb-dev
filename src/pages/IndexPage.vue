@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fit row wrap justify-start items-stretch content-stretch"
+    class="fit row wrap justify-center items-start content-start"
     style="margin-bottom: 20px; gap: 10px"
   >
     <div class="col-grow">
@@ -36,6 +36,7 @@ import GitHubStarredRepos from "components/GitHubStarredRepos.vue";
 import ListOfRepos from "src/components/ListOfRepos.vue";
 import CodeWars from "src/components/CodeWars.vue";
 import LeetCode from "src/components/LeetCode.vue";
+
 import { mapState, mapActions } from "vuex";
 
 export default defineComponent({

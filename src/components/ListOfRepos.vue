@@ -71,18 +71,22 @@
         </q-card>
       </q-card>
     </div>
-    <div v-else>Loading..</div>
+    <div v-else><SpinnerLoad /></div>
   </q-card>
 </template>
 
 <script>
 import { ref, onMounted, watch } from "vue";
+import SpinnerLoad from "src/components/SpinnerLoad.vue";
 export default {
   props: {
     reposInfo: {
       type: Array, // Замените тип на Array
       required: true,
     },
+  },
+  components: {
+    SpinnerLoad,
   },
   name: "ListOfRepos",
   setup(props) {

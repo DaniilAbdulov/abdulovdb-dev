@@ -68,6 +68,7 @@
       </q-list>
     </div>
   </div>
+  <q-skeleton v-else height="227px" width="591px" square />
 </template>
 
 <script>

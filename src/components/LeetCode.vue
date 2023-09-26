@@ -5,7 +5,13 @@
     <div class="leetcode__wrapper">
       <div class="leetcode__static">
         <div class="leetcode__circular"></div>
+        <q-skeleton
+          type="QAvatar"
+          size="160px"
+          v-if="!leetCodeData.totalSolved && !leetCodeData.totalQuestions"
+        />
         <q-knob
+          v-else
           show-value
           font-size="25px"
           class="text-red q-ma-md"

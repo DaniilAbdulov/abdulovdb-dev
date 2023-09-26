@@ -27,7 +27,7 @@
         </q-carousel-slide>
       </q-carousel>
     </div>
-    <div v-else>Loading....</div>
+    <q-skeleton height="85%" width="100%" square v-else />
   </q-card>
 </template>
 
