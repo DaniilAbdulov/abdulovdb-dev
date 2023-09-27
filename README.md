@@ -1,41 +1,4 @@
-# Quasar App (quasar-project)
-
-A Quasar Project
-
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+This small project using the Quasar Framework will tell and show a little about me. 
+Here you can see the statistics of my profile on GitHub, the statistics of solving problems on LeetCode and on CodeWars. 
+All data is obtained using various APIs and, accordingly, is updated in real time.
+This project is made in order to send a link to HH's so that they can study my stack and code.
