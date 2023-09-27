@@ -2,9 +2,8 @@
   <h4 style="text-align: center; margin-bottom: 0px; margin-top: 0px">
     List of repositories
   </h4>
-
   <q-card class="q-pa-md">
-    <div class="q-gutter-md" v-if="reposInfo.length > 0">
+    <div class="q-gutter-md" v-if="infoAboutReposIsLoading">
       <q-card
         v-for="(repo, index) in reposInfo"
         :key="repo.id"
@@ -17,16 +16,15 @@
               {{ repo.shortData.description }}
             </div>
 
-            <div
-              class="text-body2 text-grey"
-              v-for="lang in repo.languagesData"
-              :key="lang.language"
-            >
-              <div>{{ lang.language }} : {{ lang.percentage }}</div>
+            <div v-for="lang in repo.languagesData" :key="lang.language">
+              <div class="text-body2 text-grey">
+                {{ lang.language }} : {{ lang.percentage }}
+              </div>
             </div>
             <a
               class="text-subtitle1 text-black"
               :href="repo.shortData.homepage"
+              target="_blank"
               >{{ repo.shortData.homepage }}</a
             >
             <q-card-actions>
@@ -71,7 +69,7 @@
         </q-card>
       </q-card>
     </div>
-    <div v-else><SpinnerLoad /></div>
+    <div class="flex justify-center" v-else><SpinnerLoad /></div>
   </q-card>
 </template>
 
@@ -83,6 +81,9 @@ export default {
     reposInfo: {
       type: Array, // Замените тип на Array
       required: true,
+    },
+    infoAboutReposIsLoading: {
+      type: Boolean,
     },
   },
   components: {

@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/core";
+import { formatReadableDate } from "./functions/formatReadableDate";
 // console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
 
 const octokit = new Octokit({
@@ -9,6 +10,7 @@ const state = {
   reposInfo: [],
   starred_repos: {},
   user_languages: [],
+  infoAboutReposIsLoading: false,
 };
 const mutations = {
   set_user_info(state, data) {
@@ -16,6 +18,9 @@ const mutations = {
   },
   set_repos_info(state, data) {
     state.reposInfo = data;
+  },
+  set_info_loading(state, bool) {
+    state.infoAboutReposIsLoading = bool;
   },
   set_starred_repos(state, data) {
     state.starred_repos = data;
@@ -34,14 +39,16 @@ const actions = {
       });
       const { name, email, avatar_url, bio, location, created_at, updated_at } =
         response.data;
+      const formarredCreatedAt = formatReadableDate(created_at);
+      const formarredUpdatedAt = formatReadableDate(updated_at);
       const data = {
         name,
         email,
         avatar_url,
         bio,
         location,
-        created_at,
-        updated_at,
+        formarredCreatedAt,
+        formarredUpdatedAt,
       };
 
       commit("set_user_info", data);
@@ -50,6 +57,7 @@ const actions = {
     }
   },
   async getInfoAboutRepos({ commit }) {
+    commit("set_info_loading", false);
     try {
       const response = await octokit.request("GET /user/repos", {
         headers: {
@@ -139,9 +147,9 @@ const actions = {
 
       const listOfAllLanguages = getDataAboutFavoriteLanguages();
       commit("set_all_languages", listOfAllLanguages);
-      setTimeout(() => {
-        commit("set_repos_info", shortDataAboutRepos);
-      }, 10000);
+
+      commit("set_repos_info", shortDataAboutRepos);
+      commit("set_info_loading", true);
     } catch (error) {
       console.log(error);
     }

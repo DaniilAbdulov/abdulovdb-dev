@@ -9,7 +9,11 @@
         <div class="text-body2 text-grey">
           {{ repo.readme.content }}
         </div>
-        <a class="text-subtitle1 text-black" :href="repo.homepage">
+        <a
+          class="text-subtitle1 text-black"
+          :href="repo.homepage"
+          target="_blank"
+        >
           {{ repo.homepage }}
         </a>
       </q-card-section>

@@ -24,7 +24,10 @@
       </div>
     </div>
     <q-card class="git__body" style="height: 700px; overflow: auto">
-      <ListOfRepos :reposInfo="reposInfo" />
+      <ListOfRepos
+        :reposInfo="reposInfo"
+        :infoAboutReposIsLoading="infoAboutReposIsLoading"
+      />
     </q-card>
   </q-card>
 </template>
@@ -51,6 +54,7 @@ export default defineComponent({
   computed: {
     ...mapState("git_hub_repos", {
       reposInfo: (state) => state.reposInfo,
+      infoAboutReposIsLoading: (state) => state.infoAboutReposIsLoading,
     }),
     ...mapState("leet_code", {
       leetCodeData: (state) => state.leetCodeData,

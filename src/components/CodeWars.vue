@@ -1,75 +1,81 @@
 <template>
-  <h2 style="margin: 0px 0px 10px 0px">CodeWars</h2>
-  <div
-    class="q-pa-md flex align-start"
-    style="background: #242424; border-radius: 5px"
-    v-if="
-      codeWarsData &&
-      codeWarsData.overall &&
-      codeWarsData.languages &&
-      codeWarsData.honor
-    "
-  >
-    <div class="q-pa-md" style="max-width: 350px">
-      <q-list padding>
-        <q-item-label header style="color: #ffffff">Progress:</q-item-label>
+  <div class="q-pa-md">
+    <q-item-label>
+      <h2 style="margin: 0px 0px 10px 0px">CodeWars</h2>
+    </q-item-label>
+    <div
+      class="flex align-start"
+      style="background: #242424; border-radius: 5px"
+      v-if="
+        codeWarsData &&
+        codeWarsData.overall &&
+        codeWarsData.languages &&
+        codeWarsData.honor
+      "
+    >
+      <div class="q-pa-md" style="max-width: 350px">
+        <q-list padding>
+          <q-item-label header style="color: #ffffff">Progress:</q-item-label>
 
-        <q-item>
-          <q-item-section>
-            <q-item-section style="color: #b0b0b0">Rank:</q-item-section>
-          </q-item-section>
-          <q-item-section
-            :style="' color: ' + codeWarsData.overall.color + '; padding:2px;'"
-            >{{ codeWarsData.overall.name }}</q-item-section
-          >
-        </q-item>
-        <q-item>
-          <q-item-section>
-            <q-item-section style="color: #b0b0b0">Honor:</q-item-section>
-          </q-item-section>
-          <q-item-section style="color: #ffffff">{{
-            codeWarsData.honor
-          }}</q-item-section>
-        </q-item>
-        <q-item>
-          <q-item-section>
-            <q-item-section style="color: #b0b0b0"
-              >Total completed:</q-item-section
+          <q-item>
+            <q-item-section>
+              <q-item-section style="color: #b0b0b0">Rank:</q-item-section>
+            </q-item-section>
+            <q-item-section
+              :style="
+                ' color: ' + codeWarsData.overall.color + '; padding:2px;'
+              "
+              >{{ codeWarsData.overall.name }}</q-item-section
             >
-          </q-item-section>
-          <q-item-section style="color: #ffffff">{{
-            codeWarsData.totalCompleted
-          }}</q-item-section>
-        </q-item>
-      </q-list>
-    </div>
-
-    <div class="codewars__image">
-      <img
-        src="https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/6363e7db70db732290fa3db6_logo-256.png"
-        alt=""
-      />
-    </div>
-    <div class="q-pa-md" style="max-width: 300px">
-      <q-list padding>
-        <q-item-label header style="color: #ffffff">Languages:</q-item-label>
-        <q-item v-for="(lang, index) in codeWarsData.languages" :key="index">
-          <q-item-section>
-            <q-item-section style="color: #b0b0b0">{{
-              lang[0]
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-section style="color: #b0b0b0">Honor:</q-item-section>
+            </q-item-section>
+            <q-item-section style="color: #ffffff">{{
+              codeWarsData.honor
             }}</q-item-section>
-          </q-item-section>
-          <q-item-section :style="'color: ' + lang[1].color + ';'"
-            >{{ lang[1].name }}
-          </q-item-section>
-          <q-item-section style="color: #ffffff"
-            >/ Score: {{ lang[1].score }}
-          </q-item-section>
-        </q-item>
-      </q-list>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-section style="color: #b0b0b0"
+                >Total completed:</q-item-section
+              >
+            </q-item-section>
+            <q-item-section style="color: #ffffff">{{
+              codeWarsData.totalCompleted
+            }}</q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+
+      <div class="codewars__image">
+        <img
+          src="https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/6363e7db70db732290fa3db6_logo-256.png"
+          alt=""
+        />
+      </div>
+      <div class="q-pa-md" style="max-width: 300px">
+        <q-list padding>
+          <q-item-label header style="color: #ffffff">Languages:</q-item-label>
+          <q-item v-for="(lang, index) in codeWarsData.languages" :key="index">
+            <q-item-section>
+              <q-item-section style="color: #b0b0b0">{{
+                lang[0]
+              }}</q-item-section>
+            </q-item-section>
+            <q-item-section :style="'color: ' + lang[1].color + ';'"
+              >{{ lang[1].name }}
+            </q-item-section>
+            <q-item-section style="color: #ffffff"
+              >/ Score: {{ lang[1].score }}
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
     </div>
+    <q-skeleton v-else height="227px" width="591px" square />
   </div>
-  <q-skeleton v-else height="227px" width="591px" square />
 </template>
 
 <script>

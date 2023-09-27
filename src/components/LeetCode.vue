@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 500px">
+  <div class="q-pa-md">
     <q-item-label>
       <h2 style="margin: 0px 0px 10px 0px">LeetCode</h2>
     </q-item-label>

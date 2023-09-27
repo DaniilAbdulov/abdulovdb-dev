@@ -34,8 +34,10 @@
     </div>
     <q-card-section horizontal>
       <q-card-section>
-        <p>On the GitHub from: {{ user.created_at }}</p>
-        <p>Last updates: {{ user.updated_at }}</p>
+        <q-item-label
+          >On the GitHub from: {{ user.formarredCreatedAt }}</q-item-label
+        >
+        <q-item-label>Last updates: {{ user.formarredUpdatedAt }}</q-item-label>
       </q-card-section>
     </q-card-section>
   </q-card>
