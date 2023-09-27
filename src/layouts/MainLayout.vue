@@ -2,21 +2,16 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round aria-label="Menu" @click="toggleLeftDrawer"
+          ><q-icon name="fa-solid fa-bars"
+        /></q-btn>
         <q-toolbar-title> AbdulovDB </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> My Links </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
@@ -38,46 +33,34 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
-  {
     title: "Github",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework",
+    caption: "github.com/daniilabdulov",
+    icon: "fa-brands fa-github fa-bounce",
+    link: "https://github.com/daniilabdulov",
   },
   {
-    title: "Discord Chat Channel",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
+    title: "LeetCode",
+    caption: "leetcode.com/daniilabdulov",
+    icon: "fa-solid fa-link",
+    link: "https://leetcode.com/daniilabdulov",
   },
   {
-    title: "Forum",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
+    title: "CodeWars",
+    caption: "codewars.com/abdulovdb",
+    icon: "fa-solid fa-link",
+    link: "https://www.codewars.com/users/abdulovdb",
   },
   {
-    title: "Twitter",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
+    title: "Telegram",
+    caption: "t.me/ABDULOVDB",
+    icon: "fa-brands fa-telegram fa-spin",
+    link: "https://t.me/ABDULOVDB",
   },
   {
-    title: "Facebook",
-    caption: "@QuasarFramework",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
-    link: "https://awesome.quasar.dev",
+    title: "Instagram",
+    caption: "instagram.com/abdulovdb",
+    icon: "fa-brands fa-instagram fa-beat",
+    link: "https://instagram.com/abdulovdb",
   },
 ];
 

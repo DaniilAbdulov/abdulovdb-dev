@@ -10,7 +10,8 @@ module.exports = configure(function (/* ctx */) {
     css: ["app.scss"],
     extras: [
       "roboto-font", // optional, you are not bound to it
-      "material-icons", // optional, you are not bound to it
+      "material-icons",
+      "fontawesome-v6",
     ],
     build: {
       target: {
@@ -33,7 +34,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {},
-
+      iconSet: "fontawesome-v6",
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 

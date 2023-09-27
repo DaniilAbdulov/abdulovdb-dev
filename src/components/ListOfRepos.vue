@@ -57,10 +57,10 @@
                 <q-separator />
                 <q-card-section class="text-body2">
                   <div class="q-m-xs">
-                    Created: {{ repo.shortData.created_at }}
+                    Created: {{ repo.shortData.formattedCreatedAt }}
                   </div>
                   <div class="q-m-xs">
-                    Last update: {{ repo.shortData.updated_at }}
+                    Last update: {{ repo.shortData.formattedUpdatedAt }}
                   </div>
                 </q-card-section>
               </div>

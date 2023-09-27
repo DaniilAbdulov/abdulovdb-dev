@@ -1,5 +1,6 @@
 import { Octokit } from "@octokit/core";
 import { formatReadableDate } from "./functions/formatReadableDate";
+import { formatWhatTimeAgo } from "./functions/formatWhatTimeAgo";
 // console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
 
 const octokit = new Octokit({
@@ -114,14 +115,15 @@ const actions = {
           updated_at,
           description,
         } = repo;
-
+        const formattedCreatedAt = formatWhatTimeAgo(created_at);
+        const formattedUpdatedAt = formatWhatTimeAgo(updated_at);
         const shortData = {
-          created_at,
+          formattedCreatedAt,
           homepage,
           html_url,
           id,
           name,
-          updated_at,
+          formattedUpdatedAt,
           description,
         };
 
@@ -203,13 +205,15 @@ const actions = {
             html_url,
             homepage,
           } = repo;
+          const formattedCreatedAt = formatWhatTimeAgo(created_at);
+          const formattedUpdatedAt = formatWhatTimeAgo(updated_at);
           return {
             name,
             readme: {
               content: atob(readme.content),
             },
-            created_at,
-            updated_at,
+            formattedCreatedAt,
+            formattedUpdatedAt,
             description,
             html_url,
             homepage,
