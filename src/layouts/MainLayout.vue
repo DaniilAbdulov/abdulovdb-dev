@@ -20,7 +20,7 @@
         />
       </q-list>
     </q-drawer>
-
+    <!-- <GeneralPage /> -->
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -30,6 +30,7 @@
 <script>
 import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+// import GeneralPage from "src/components/GeneralPage.vue";
 
 const linksList = [
   {
@@ -69,6 +70,7 @@ export default defineComponent({
 
   components: {
     EssentialLink,
+    // GeneralPage,
   },
 
   setup() {

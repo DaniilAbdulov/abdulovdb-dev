@@ -1,14 +1,32 @@
 <template>
-  <div>
-    <div>
-      <q-parallax
-        class="fullscreen"
-        style="margin-top: 50px; position: absolute; margin-bottom: 30px"
-        src="https://cdn.quasar.dev/img/parallax2.jpg"
-      >
-        <h1 class="text-white">Basic</h1>
-      </q-parallax>
-    </div>
+  <div class="q-pa-md">
+    <q-parallax style="height: 100vh">
+      <template v-slot:media>
+        <img
+          src="https://cdn.quasar.dev/img/parallax2.jpg"
+          style="object-fit: cover; width: 100%"
+        />
+      </template>
+
+      <template v-slot:content="scope">
+        <div
+          class="absolute column items-center"
+          :style="{
+            opacity: 0.45 + (1 - scope.percentScrolled) * 0.55,
+            top: scope.percentScrolled * 60 + '%',
+            left: 0,
+            right: 0,
+          }"
+        >
+          <img
+            src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"
+            style="width: 150px; height: 150px"
+          />
+          <div class="text-h3 text-white text-center">Quasar Framework</div>
+          <div class="text-h6 text-grey-3 text-center">v{{ $q.version }}</div>
+        </div>
+      </template>
+    </q-parallax>
   </div>
 </template>
 
@@ -18,23 +36,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-// .full-screen {
-//   position: relative;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-
-//   &__body {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//   }
-// }
-</style>
+<style></style>
