@@ -1,10 +1,10 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-sm">
     <q-item-label>
       <h2 style="margin: 0px 0px 10px 0px">CodeWars</h2>
     </q-item-label>
-    <div
-      class="flex align-start"
+    <q-card
+      class="fit row wrap justify-center items-start content-start"
       style="background: #242424; border-radius: 5px"
       v-if="
         codeWarsData &&
@@ -13,7 +13,7 @@
         codeWarsData.honor
       "
     >
-      <div class="q-pa-md" style="max-width: 350px">
+      <q-card-section class="q-pa-sm">
         <q-list padding>
           <q-item-label header style="color: #ffffff">Progress:</q-item-label>
 
@@ -47,15 +47,15 @@
             }}</q-item-section>
           </q-item>
         </q-list>
-      </div>
+      </q-card-section>
 
-      <div class="codewars__image">
+      <q-card-section class="codewars__image">
         <img
           src="https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/6363e7db70db732290fa3db6_logo-256.png"
           alt=""
         />
-      </div>
-      <div class="q-pa-md" style="max-width: 300px">
+      </q-card-section>
+      <q-card-section class="q-pa-sm">
         <q-list padding>
           <q-item-label header style="color: #ffffff">Languages:</q-item-label>
           <q-item v-for="(lang, index) in codeWarsData.languages" :key="index">
@@ -72,15 +72,23 @@
             </q-item-section>
           </q-item>
         </q-list>
-      </div>
+      </q-card-section>
+    </q-card>
+    <div class="flex justify-center" v-else>
+      <SpinnerLoad />
     </div>
-    <q-skeleton v-else height="227px" width="591px" square />
+    <!-- <q-skeleton v-else class="q-pa-sm" height="200px" width="200px" /> -->
   </div>
 </template>
 
 <script>
+import SpinnerLoad from "./SpinnerLoad.vue";
+
 export default {
   name: "CodeWars",
+  components: {
+    SpinnerLoad,
+  },
   props: {
     codeWarsData: {
       honor: 0,
@@ -118,6 +126,11 @@ export default {
     img {
       width: 100%;
       object-fit: cover;
+    }
+  }
+  @media (max-width: 568px) {
+    &__image {
+      max-width: 50px;
     }
   }
 }

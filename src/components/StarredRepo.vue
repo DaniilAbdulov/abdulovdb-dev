@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md">
+  <div class="q-pa-sm row items-start q-gutter-md">
     <q-card class="my-card" flat bordered>
       <q-card-section>
         <div class="text-h4 text-green-9">{{ repo.name }}</div>

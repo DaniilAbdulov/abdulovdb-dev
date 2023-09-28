@@ -2,7 +2,7 @@
   <h4 style="text-align: center; margin-bottom: 0px; margin-top: 0px">
     List of repositories
   </h4>
-  <q-card class="q-pa-md">
+  <q-card class="q-pa-sm">
     <div class="q-gutter-md" v-if="infoAboutReposIsLoading">
       <q-card
         v-for="(repo, index) in reposInfo"

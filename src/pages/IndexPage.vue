@@ -6,7 +6,7 @@
     <div class="col-grow">
       <LeetCode :leetCodeData="leetCodeData" />
     </div>
-    <div>
+    <div class="col-grow">
       <CodeWars :codeWarsData="codeWarsData" />
     </div>
   </q-card>
@@ -14,16 +14,21 @@
   <q-card class="git">
     <div
       class="fit row wrap justify-center items-start content-start"
-      style="margin-bottom: 10px; padding: 20px 10px; gap: 5px"
+      style="
+        margin-bottom: 10px;
+        padding: 20px 10px;
+        gap: 5px;
+        border-bottom: 1px solid black;
+      "
     >
-      <div class="" style="overflow: auto; min-height: auto; max-height: auto">
+      <div style="overflow: auto; min-height: auto; max-height: auto">
         <GitHubUserInfo />
       </div>
       <div class="col-grow self-stretch">
         <GitHubStarredRepos />
       </div>
     </div>
-    <q-card class="git__body" style="height: 700px; overflow: auto">
+    <q-card style="height: 700px; overflow: auto">
       <ListOfRepos
         :reposInfo="reposInfo"
         :infoAboutReposIsLoading="infoAboutReposIsLoading"

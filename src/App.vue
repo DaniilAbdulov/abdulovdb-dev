@@ -1,5 +1,4 @@
 <template>
-  <GeneralPage />
   <q-layout>
     <div class="custom-container">
       <q-page-container>
@@ -13,11 +12,8 @@
 
 <script>
 import { defineComponent } from "vue";
-import GeneralPage from "src/components/GeneralPage.vue";
+
 export default defineComponent({
-  components: {
-    GeneralPage,
-  },
   name: "App",
 });
 </script>
