@@ -71,8 +71,39 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
-.my-card
-  width: 350px
-  margin-bottom: 20px
+<style lang="scss" scoped>
+.my-card {
+  width: 350px;
+  margin-bottom: 20px;
+}
+@media (max-width: 490px) {
+  .my-card {
+    width: 300px;
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 430px) {
+  .my-card {
+    width: 250px;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 490px) {
+  .text-h4 {
+    font-size: 1.7rem;
+    letter-spacing: 0.00735em;
+  }
+  .text-green-9 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .text-h6 {
+  }
+  .text-body2 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .text-subtitle1 {
+  }
+}
 </style>
