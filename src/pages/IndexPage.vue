@@ -14,12 +14,7 @@
   <q-card class="git">
     <div
       class="fit row wrap justify-center items-start content-start"
-      style="
-        margin-bottom: 10px;
-        padding: 20px 10px;
-        gap: 5px;
-        border-bottom: 1px solid black;
-      "
+      style="margin-bottom: 10px; padding: 20px 10px; gap: 5px"
     >
       <div style="overflow: auto; min-height: auto; max-height: auto">
         <GitHubUserInfo />
@@ -28,7 +23,7 @@
         <GitHubStarredRepos />
       </div>
     </div>
-    <q-card style="height: 700px; overflow: auto">
+    <q-card>
       <ListOfRepos
         :reposInfo="reposInfo"
         :infoAboutReposIsLoading="infoAboutReposIsLoading"

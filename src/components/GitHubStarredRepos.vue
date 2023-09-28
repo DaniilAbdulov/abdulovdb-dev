@@ -1,8 +1,11 @@
 <template>
-  <q-card flat bordered style="height: 100%">
-    <h4 style="text-align: center; margin-bottom: 20px; margin-top: 0px">
+  <q-card flat style="height: 100%">
+    <q-item-label
+      class="text-h4"
+      style="text-align: center; margin-bottom: 30px; margin-top: 0px"
+    >
       My favorite repositories
-    </h4>
+    </q-item-label>
     <div class="q-gutter-lg" v-if="starred_repos.length > 0">
       <q-carousel
         v-model="slide"

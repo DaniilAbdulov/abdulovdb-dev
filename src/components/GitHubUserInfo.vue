@@ -1,8 +1,11 @@
 <template>
   <q-card class="my-card" flat bordered>
-    <h4 style="text-align: center; margin-bottom: 20px; margin-top: 0px">
-      About Me
-    </h4>
+    <q-item-label
+      class="text-h4"
+      style="text-align: center; margin-bottom: 30px; margin-top: 0px"
+    >
+      About me
+    </q-item-label>
     <q-item>
       <q-item-section avatar>
         <q-avatar>
