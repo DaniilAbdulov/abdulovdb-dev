@@ -18,7 +18,7 @@
         padding
         arrows
         height="100%"
-        class="bg-primary text-white shadow-1 rounded-borders"
+        class="bg-dark text-white shadow-1 rounded-borders"
       >
         <q-carousel-slide
           v-for="repo in starred_repos"

@@ -1,25 +1,33 @@
 <template>
   <div class="fc">
-    <transition
-      appear
-      enter-active-class="animated fadeInUpBig"
-      leave-active-class="animated backInUpOut"
-    >
-      <div class="fc__body">
+    <div class="fc__body">
+      <transition appear enter-active-class="animated fadeIn">
         <img
-          src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"
-          style="width: 150px; height: 150px"
+          :src="user.avatar_url"
+          style="border-radius: 50%; max-width: 400px"
         />
-        <div class="text-h3 text-white text-center">Quasar Framework</div>
-        <div class="text-h6 text-grey-3 text-center">v{{ $q.version }}</div>
-      </div>
-    </transition>
+      </transition>
+      <transition appear enter-active-class="animated fadeInLeft">
+        <div class="text-h2 text-white text-center">AbdulovDB</div>
+      </transition>
+      <transition appear enter-active-class="animated fadeInRight">
+        <div class="text-h3 text-grey-3 text-center">
+          Junior Full-Stack Developer
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "FullScreen",
+  computed: {
+    ...mapState("git_hub_repos", {
+      user: (state) => state.user,
+    }),
+  },
 };
 </script>
 
@@ -44,5 +52,14 @@ export default {
   align-items: center;
 }
 .fc__title {
+}
+.animated.fadeInRight,
+.animated.fadeInLeft {
+  animation-duration: 2s !important;
+  animation-delay: 1s !important;
+}
+.animated.fadeIn {
+  animation-duration: 1s !important;
+  animation-delay: 0.5s !important;
 }
 </style>

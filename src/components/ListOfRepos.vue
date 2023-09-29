@@ -36,7 +36,7 @@
           <q-card-actions>
             <q-btn
               flat
-              color="primary"
+              color="dark"
               label="Watch full code"
               :href="repo.shortData.html_url"
               target="_blank"
