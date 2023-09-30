@@ -1,8 +1,6 @@
 <template>
   <div class="q-pa-sm">
-    <q-item-label>
-      <h2 style="margin: 0px 0px 10px 0px">LeetCode</h2>
-    </q-item-label>
+    <q-item-label class="text-h3 q-mb-sm q-pa-xs"> LeetCode </q-item-label>
     <q-card class="fit row wrap justify-center items-center content-start">
       <q-card-section horizontal>
         <q-knob

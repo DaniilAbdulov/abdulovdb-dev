@@ -2,16 +2,15 @@
   <div class="fc">
     <div class="fc__body">
       <transition appear enter-active-class="animated fadeIn">
-        <img
-          :src="user.avatar_url"
-          style="border-radius: 50%; max-width: 400px"
-        />
+        <div class="logo">
+          <img :src="user.avatar_url" />
+        </div>
       </transition>
       <transition appear enter-active-class="animated fadeInLeft">
         <div class="text-h2 text-white text-center">AbdulovDB</div>
       </transition>
       <transition appear enter-active-class="animated fadeInRight">
-        <div class="text-h3 text-grey-3 text-center">
+        <div class="text-h4 text-grey-3 text-center">
           Junior Full-Stack Developer
         </div>
       </transition>
@@ -35,8 +34,9 @@ export default {
 .fc {
   margin-top: 50px;
   min-height: 100vh;
-  background: url("https://ogorshkov.ru/wp-content/uploads/9/0/c/90c013d1762e2186f1788a37d3b6e871.png")
-    center / cover no-repeat fixed;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
   display: flex;
   padding: 10px 0px;
 }
@@ -50,6 +50,16 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0px 10px;
+}
+.logo {
+  max-width: 400px;
+  padding: 0px 15px;
+}
+.logo img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 50%;
 }
 .fc__title {
 }

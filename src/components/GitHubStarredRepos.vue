@@ -25,6 +25,7 @@
           :key="repo.id"
           :name="repo.name"
           class="column no-wrap flex-center"
+          style="padding-bottom: 47px"
         >
           <StarredRepo :repo="repo" />
         </q-carousel-slide>

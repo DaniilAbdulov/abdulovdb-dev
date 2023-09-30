@@ -1,6 +1,8 @@
 const { configure } = require("quasar/wrappers");
+
 module.exports = configure(function (/* ctx */) {
   require("dotenv").config();
+
   return {
     eslint: {
       warnings: true,

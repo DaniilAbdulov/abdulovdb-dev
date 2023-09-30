@@ -2,7 +2,7 @@
   <q-card class="my-card" flat bordered>
     <q-item-label
       class="text-h4"
-      style="text-align: center; margin-bottom: 30px; margin-top: 0px"
+      style="text-align: center; margin-bottom: 10px; margin-top: 0px"
     >
       About me
     </q-item-label>

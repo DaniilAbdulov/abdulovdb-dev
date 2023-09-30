@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/core";
 import { formatReadableDate } from "./functions/formatReadableDate";
-import { formatWhatTimeAgo } from "./functions/formatWhatTimeAgo";
+import { getTimeDifference } from "./functions/getTimeDifference";
 // console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
 
 const octokit = new Octokit({
@@ -115,8 +115,8 @@ const actions = {
           updated_at,
           description,
         } = repo;
-        const formattedCreatedAt = formatWhatTimeAgo(created_at);
-        const formattedUpdatedAt = formatWhatTimeAgo(updated_at);
+        const formattedCreatedAt = getTimeDifference(created_at);
+        const formattedUpdatedAt = getTimeDifference(updated_at);
         const shortData = {
           formattedCreatedAt,
           homepage,
@@ -205,8 +205,8 @@ const actions = {
             html_url,
             homepage,
           } = repo;
-          const formattedCreatedAt = formatWhatTimeAgo(created_at);
-          const formattedUpdatedAt = formatWhatTimeAgo(updated_at);
+          const formattedCreatedAt = getTimeDifference(created_at);
+          const formattedUpdatedAt = getTimeDifference(updated_at);
           return {
             name,
             readme: {

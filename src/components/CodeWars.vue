@@ -1,11 +1,9 @@
 <template>
   <div class="q-pa-sm">
-    <q-item-label>
-      <h2 style="margin: 0px 0px 10px 0px">CodeWars</h2>
-    </q-item-label>
+    <q-item-label class="text-h3 q-mb-sm q-pa-xs"> CodeWars </q-item-label>
     <q-card
       class="fit row wrap justify-center items-start content-start"
-      style="background: #242424; border-radius: 5px"
+      style="background: #0f2027; border-radius: 5px"
       v-if="
         codeWarsData &&
         codeWarsData.overall &&

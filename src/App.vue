@@ -9,7 +9,6 @@
           </q-page>
         </q-page-container>
       </div>
-      <!-- <FullScreen /> -->
     </q-layout>
   </div>
 </template>

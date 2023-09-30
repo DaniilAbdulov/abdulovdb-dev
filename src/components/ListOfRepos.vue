@@ -1,10 +1,7 @@
 <template>
   <div class="q-pa-sm" style="position: relative">
-    <q-item-label
-      class="text-h4 list-of-repos"
-      style="text-align: center; margin-bottom: 20px; margin-top: 0px"
-    >
-      List of repositories
+    <q-item-label class="text-h4 list-of-repos" style="text-align: center">
+      Repository List
     </q-item-label>
     <q-scroll-area
       v-if="infoAboutReposIsLoading"
@@ -17,7 +14,7 @@
         style="margin-bottom: 10px"
       >
         <q-card-section>
-          <div class="text-h4 text-blue-9">{{ repo.shortData.name }}</div>
+          <div class="text-h4 text-green-9">{{ repo.shortData.name }}</div>
           <div class="text-h6 text-black">
             {{ repo.shortData.description }}
           </div>
