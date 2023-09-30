@@ -1,5 +1,5 @@
 <template>
-  <!-- :style="'min-height:' + setMinHeight(hAboutMe, screenWidth) + 'px;'" -->
+  <q-space />
   <q-intersection
     transition="slide-left"
     transition-duration="800"
@@ -7,7 +7,7 @@
   >
     <AboutMe />
   </q-intersection>
-  <!-- :style="'min-height:' + setMinHeight(hLeetWarsInfo, screenWidth) + 'px;'" -->
+  <q-space />
   <q-intersection
     transition="slide-right"
     transition-duration="800"
@@ -23,7 +23,7 @@
       </q-item-label>
     </q-item>
   </q-intersection>
-  <!-- :style="'min-height:' + setMinHeight(hLeetWars, screenWidth) + 'px;'" -->
+  <q-space />
   <q-intersection
     transition="slide-left"
     transition-duration="800"
@@ -41,7 +41,7 @@
       </div>
     </q-card>
   </q-intersection>
-  <!-- :style="'min-height:' + setMinHeight(hGitHubInfo, screenWidth) + 'px;'" -->
+  <q-space />
   <q-intersection
     transition="slide-right"
     transition-duration="800"
@@ -66,7 +66,6 @@
     </div>
   </q-intersection>
   <q-card class="git">
-    <q-item-label class="text-h3">GitHub</q-item-label>
     <div
       class="fit row wrap justify-center items-start content-start"
       style="padding: 20px 10px; gap: 5px"

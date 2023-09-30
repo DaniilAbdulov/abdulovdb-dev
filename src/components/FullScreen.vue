@@ -3,7 +3,7 @@
     <div class="fc__body">
       <transition appear enter-active-class="animated fadeIn">
         <div class="logo">
-          <img :src="user.avatar_url" />
+          <img src="../assets/abdulovdb.jpg" />
         </div>
       </transition>
       <transition appear enter-active-class="animated fadeInLeft">

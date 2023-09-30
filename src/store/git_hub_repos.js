@@ -1,7 +1,7 @@
 import { Octokit } from "@octokit/core";
 import { formatReadableDate } from "./functions/formatReadableDate";
 import { getTimeDifference } from "./functions/getTimeDifference";
-// console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
+import { Notify } from "quasar";
 
 const octokit = new Octokit({
   auth: process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
@@ -55,6 +55,19 @@ const actions = {
       commit("set_user_info", data);
     } catch (error) {
       console.log(error);
+      Notify.create({
+        message: "Error fetching info about user",
+        color: "negative",
+        actions: [
+          {
+            label: "Reload",
+            color: "white",
+            handler: () => {
+              location.reload();
+            },
+          },
+        ],
+      });
     }
   },
   async getInfoAboutRepos({ commit }) {
@@ -154,6 +167,19 @@ const actions = {
       commit("set_info_loading", true);
     } catch (error) {
       console.log(error);
+      Notify.create({
+        message: "Error fetching info about repos",
+        color: "negative",
+        actions: [
+          {
+            label: "Reload",
+            color: "white",
+            handler: () => {
+              location.reload();
+            },
+          },
+        ],
+      });
     }
   },
   async getStarredReposReadmes({ commit }) {
@@ -226,6 +252,19 @@ const actions = {
       return filteredStarredReposWithReadmes;
     } catch (error) {
       console.error("Error fetching starred repos:", error);
+      Notify.create({
+        message: "Error fetching starred repos",
+        color: "negative",
+        actions: [
+          {
+            label: "Reload",
+            color: "white",
+            handler: () => {
+              location.reload();
+            },
+          },
+        ],
+      });
     }
   },
 };

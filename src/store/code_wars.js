@@ -30,6 +30,19 @@ const actions = {
       commit("set_codeWars_data", codeWarsObject);
     } catch (error) {
       console.log(error);
+      Notify.create({
+        message: "Error fetching codewars statistic",
+        color: "negative",
+        actions: [
+          {
+            label: "Reload",
+            color: "white",
+            handler: () => {
+              location.reload();
+            },
+          },
+        ],
+      });
     }
   },
 };

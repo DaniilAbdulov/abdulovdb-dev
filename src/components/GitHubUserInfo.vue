@@ -1,5 +1,10 @@
 <template>
-  <q-card class="my-card" flat bordered>
+  <q-card
+    v-if="Object.entries(user).length > 0 && user_languages.length > 0"
+    class="my-card"
+    flat
+    bordered
+  >
     <q-item-label
       class="text-h4"
       style="text-align: center; margin-bottom: 10px; margin-top: 0px"
@@ -44,6 +49,7 @@
       </q-card-section>
     </q-card-section>
   </q-card>
+  <q-skeleton v-else class="my-card" height="509px" square />
 </template>
 
 <script>
@@ -73,4 +79,5 @@ export default defineComponent({
 .my-card
   width: 100%
   max-width: 350px
+  min-width: 284px
 </style>

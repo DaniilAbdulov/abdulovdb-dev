@@ -16,6 +16,19 @@ const actions = {
       commit("set_leetCode_data", data);
     } catch (error) {
       console.log(error);
+      Notify.create({
+        message: "Error fetching leetcode statistic",
+        color: "negative",
+        actions: [
+          {
+            label: "Reload",
+            color: "white",
+            handler: () => {
+              location.reload();
+            },
+          },
+        ],
+      });
     }
   },
 };
