@@ -1,11 +1,18 @@
 <template>
-  <!-- <q-intersection class="filler" transition="flip-right">
-      </q-intersection > -->
-  <div style="position: absolute; top: 0; left: 0">{{ screenWidth }}</div>
-  <q-intersection class="filler" transition="scale">
+  <!-- :style="'min-height:' + setMinHeight(hAboutMe, screenWidth) + 'px;'" -->
+  <q-intersection
+    transition="slide-left"
+    transition-duration="800"
+    class="about-me-for-animation"
+  >
     <AboutMe />
   </q-intersection>
-  <q-intersection class="filler" transition="scale">
+  <!-- :style="'min-height:' + setMinHeight(hLeetWarsInfo, screenWidth) + 'px;'" -->
+  <q-intersection
+    transition="slide-right"
+    transition-duration="800"
+    class="leet-wars-info-for-animation"
+  >
     <q-item style="justify-content: center">
       <q-item-label class="text-h5 q-mb-sm q-pa-xs text-center">
         You can now track my progress in LeetCode and CodeWars.
@@ -16,7 +23,12 @@
       </q-item-label>
     </q-item>
   </q-intersection>
-  <q-intersection class="filler" transition="scale">
+  <!-- :style="'min-height:' + setMinHeight(hLeetWars, screenWidth) + 'px;'" -->
+  <q-intersection
+    transition="slide-left"
+    transition-duration="800"
+    class="leet-wars-for-animation"
+  >
     <q-card
       class="fit row wrap items-start content-start"
       style="margin-bottom: 20px; gap: 10px; padding: 10px"
@@ -29,7 +41,12 @@
       </div>
     </q-card>
   </q-intersection>
-  <q-intersection class="filler" transition="scale">
+  <!-- :style="'min-height:' + setMinHeight(hGitHubInfo, screenWidth) + 'px;'" -->
+  <q-intersection
+    transition="slide-right"
+    transition-duration="800"
+    class="git-hub-info-for-animation"
+  >
     <div>
       <q-item>
         <q-item-label class="text-h5 q-mb-sm q-pa-xs text-center">
@@ -94,12 +111,6 @@ export default defineComponent({
   name: "IndexPage",
   data() {
     return {
-      screenWidth: window.innerWidth,
-      hAboutMe: 388,
-      hLeetWarsInfo: 85,
-      hLeetWars: 300,
-      hGitHubInfo: 277,
-      IndPaBlDescVisible: false,
       IndexPageBlocksDescriptions: [
         `"About Me Section": `,
         `In this section, you'll find a brief overview from my GitHub profile. The "About Me" block showcases my background, skills, and provides details about when I registered my profile and when it was last updated.`,
@@ -134,9 +145,6 @@ export default defineComponent({
     ...mapActions("git_hub_repos", ["getInfoAboutRepos"]),
     ...mapActions("leet_code", ["getInfoFromleetCode"]),
     ...mapActions("code_wars", ["getInfoFromCodeWars"]),
-    updateScreenWidth() {
-      this.screenWidth = window.innerWidth;
-    },
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.updateScreenWidth);
@@ -145,12 +153,91 @@ export default defineComponent({
     this.getInfoAboutRepos();
     this.getInfoFromleetCode();
     this.getInfoFromCodeWars();
-    window.addEventListener("resize", this.updateScreenWidth);
   },
 });
 </script>
 <style>
-.filler {
-  /* min-height: 200px; */
+@media (min-width: 1027px) {
+  .about-me-for-animation {
+    min-height: 388px;
+  }
+  .leet-wars-info-for-animation {
+    min-height: 85px;
+  }
+  .leet-wars-for-animation {
+    min-height: 300px;
+  }
+  .git-hub-info-for-animation {
+    min-height: 277px;
+  }
+}
+@media (max-width: 1026px) {
+  .about-me-for-animation {
+    min-height: 410px;
+  }
+}
+@media (max-width: 769px) {
+  .about-me-for-animation {
+    min-height: 515px;
+  }
+  .leet-wars-info-for-animation {
+    min-height: 109px;
+  }
+  .leet-wars-for-animation {
+    min-height: 587px;
+  }
+  .git-hub-info-for-animation {
+    min-height: 349px;
+  }
+}
+@media (max-width: 426px) {
+  .about-me-for-animation {
+    min-height: 725px;
+  }
+  .leet-wars-info-for-animation {
+    min-height: 162px;
+  }
+  .leet-wars-for-animation {
+    min-height: 744px;
+  }
+  .git-hub-info-for-animation {
+    min-height: 502px;
+  }
+}
+@media (max-width: 376px) {
+  .about-me-for-animation {
+    min-height: 788px;
+  }
+  .leet-wars-info-for-animation {
+    min-height: 190px;
+  }
+  .leet-wars-for-animation {
+    min-height: 895px;
+  }
+  .git-hub-info-for-animation {
+    min-height: 570px;
+  }
+}
+@media (max-width: 321px) {
+  .about-me-for-animation {
+    min-height: 956px;
+  }
+  .leet-wars-info-for-animation {
+    min-height: 215px;
+  }
+  .leet-wars-for-animation {
+    min-height: 895px;
+  }
+  .git-hub-info-for-animation {
+    min-height: 690px;
+  }
+}
+.about-me-for-animation {
+}
+.leet-wars-info-for-animation {
+}
+.leet-wars-for-animation {
+}
+.git-hub-info-for-animation {
 }
 </style>
