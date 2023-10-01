@@ -32,9 +32,8 @@ export default {
 
 <style>
 .fc {
-  margin-top: 50px;
   min-height: 100vh;
-  background: #0f2027; /* fallback for old browsers */
+  background: #0f2027;
   background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
   background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
   display: flex;
