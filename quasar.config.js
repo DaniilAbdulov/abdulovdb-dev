@@ -23,8 +23,6 @@ module.exports = configure(function (/* ctx */) {
       env: {
         VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN:
           process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
-        VUE_APP_VERCEL_GITHUB_PERSONAL_ACCESS_TOKEN:
-          process.env.VUE_APP_VERCEL_GITHUB_PERSONAL_ACCESS_TOKEN,
       },
       vueRouterMode: "hash",
     },
