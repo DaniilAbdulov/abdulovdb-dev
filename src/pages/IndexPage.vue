@@ -189,7 +189,15 @@ export default defineComponent({
     min-height: 349px;
   }
 }
-@media (max-width: 426px) {
+@media (max-width: 515px) {
+  .about-me-for-animation {
+    min-height: 641px;
+  }
+  .leet-wars-info-for-animation {
+    min-height: 138px;
+  }
+}
+@media (max-width: 429px) {
   .about-me-for-animation {
     min-height: 725px;
   }
