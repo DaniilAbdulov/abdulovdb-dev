@@ -40,14 +40,14 @@ const linksList = [
   {
     title: "LeetCode",
     caption: "leetcode.com/daniilabdulov",
-    icon: "img:src/assets/leetcode.svg",
+    icon: "img:https://www.svgrepo.com/show/306328/leetcode.svg",
     link: "https://leetcode.com/daniilabdulov",
   },
 
   {
     title: "CodeWars",
     caption: "codewars.com/abdulovdb",
-    icon: "img:src/assets/codewars.svg",
+    icon: "img:https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/6363e7db70db732290fa3db6_logo-256.png",
     link: "https://www.codewars.com/users/abdulovdb",
   },
   {
@@ -65,7 +65,7 @@ const linksList = [
   {
     title: "hh",
     caption: "hh.ru/resume/abdulovdb",
-    icon: "img:src/assets/hh.svg",
+    icon: "img:https://static.tildacdn.com/tild3966-3962-4162-a335-393163373661/2323.png",
     link: "https://tyumen.hh.ru/resume/5bacdf70ff0c04535b0039ed1f6a67364e774d",
   },
 ];
