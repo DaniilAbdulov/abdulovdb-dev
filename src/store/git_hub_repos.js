@@ -4,7 +4,7 @@ import { getTimeDifference } from "./functions/getTimeDifference";
 import { Notify } from "quasar";
 
 const octokit = new Octokit({
-  auth: process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
+  auth: process.env.VUE_APP_VERCEL_GITHUB_PERSONAL_ACCESS_TOKEN,
 });
 const state = {
   user: {},
