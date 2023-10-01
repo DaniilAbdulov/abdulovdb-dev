@@ -2,10 +2,10 @@ import { Octokit } from "@octokit/core";
 import { formatReadableDate } from "./functions/formatReadableDate";
 import { getTimeDifference } from "./functions/getTimeDifference";
 import { Notify } from "quasar";
-console.log(process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
+console.log(process.env.VUE_APP_VERCEL_GITHUB_PERSONAL_ACCESS_TOKEN);
 
 const octokit = new Octokit({
-  auth: process.env.VUE_APP_GITHUB_PERSONAL_ACCESS_TOKEN,
+  auth: process.env.VUE_APP_VERCEL_GITHUB_PERSONAL_ACCESS_TOKEN,
 });
 const state = {
   user: {},
