@@ -31,6 +31,7 @@ export default {
         SCSS: "pink-4",
         Vue: "light-green",
         React: "dodgerblue",
+        TypeScript: "blue",
       };
       if (Object.keys(colorOfTechnoligies).includes(languageName)) {
         return colorOfTechnoligies[languageName];
