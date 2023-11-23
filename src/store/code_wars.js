@@ -26,7 +26,7 @@ const actions = {
           value,
         ]),
       };
-
+     console.log(codeWarsObject);//удалить
       commit("set_codeWars_data", codeWarsObject);
     } catch (error) {
       console.log(error);
