@@ -21,12 +21,10 @@ const actions = {
         honor,
         totalCompleted,
         overall,
-        languages: Object.entries(languages).map(([key, value]) => [
-          key,
-          value,
-        ]),
+        languages: Object.entries(languages)
+          .map(([key, value]) => [key, value])
+          .sort((a, b) => b[1].score - a[1].score),
       };
-     console.log(codeWarsObject);//удалить
       commit("set_codeWars_data", codeWarsObject);
     } catch (error) {
       console.log(error);
@@ -38,7 +36,7 @@ const actions = {
             label: "Reload",
             color: "white",
             handler: () => {
-              location.reload();
+              __cpLocation.reload();
             },
           },
         ],
