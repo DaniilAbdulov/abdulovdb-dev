@@ -56,7 +56,7 @@ export default {
     this.getStarredReposReadmes();
   },
   setup() {
-    const firstRepo = ref("Little-social-network");
+    const firstRepo = ref("flower-shop-react");
     return {
       slide: firstRepo,
     };
