@@ -11,7 +11,7 @@
       </transition>
       <transition appear enter-active-class="animated fadeInRight">
         <div class="text-h4 text-grey-3 text-center">
-          Junior Full-Stack Developer
+          Full Stack Developer
         </div>
       </transition>
     </div>
